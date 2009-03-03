@@ -1,0 +1,6 @@
+#!/bin/sh
+rm -f /tmp/codetmp
+cat /seis/data0/crotwell/fissures/Notes/gnuCodePreamble $1 > /tmp/codetmp
+rm $1 
+mv /tmp/codetmp $1
+

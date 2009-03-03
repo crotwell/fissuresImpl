@@ -1,0 +1,662 @@
+<?xml version = "1.0" encoding = "ISO-8859-1" ?>
+<!DOCTYPE XMI SYSTEM "uml.dtd" >
+<XMI>
+  <XMI.header>
+    <XMI.documentation>
+      <XMI.exporter>Argo/UML</XMI.exporter>
+      <XMI.exporterVersion>0.7.0</XMI.exporterVersion> 
+    </XMI.documentation>
+    <XMI.metamodel name="uml" version="1.1"/>
+  </XMI.header>
+  <XMI.content>
+    <Model XMI.id = "S.100025">
+      <name>untitledpackage</name>
+      <visibility XMI.value = "public"/>
+      <isAbstract XMI.value="false"/>
+      <isLeaf XMI.value="false"/>
+      <isRoot XMI.value="false"/>
+      <ownedElement>
+        <Class XMI.id = "S.100027">
+          <name>SeismogramComponent</name>
+          <visibility XMI.value = "public"/>
+          <isAbstract XMI.value="false"/>
+          <isLeaf XMI.value="false"/>
+          <isRoot XMI.value="false"/>
+          <isActive XMI.value = "false"/>
+        </Class>
+      </ownedElement>
+      <ownedElement>
+        <Class XMI.id = "S.100073">
+          <name>SeismogramFinder</name>
+          <visibility XMI.value = "public"/>
+          <isAbstract XMI.value="false"/>
+          <isLeaf XMI.value="false"/>
+          <isRoot XMI.value="false"/>
+          <isActive XMI.value = "false"/>
+        </Class>
+      </ownedElement>
+      <ownedElement>
+        <Class XMI.id = "S.100074">
+          <name>SeismogramFactory</name>
+          <visibility XMI.value = "public"/>
+          <isAbstract XMI.value="false"/>
+          <isLeaf XMI.value="false"/>
+          <isRoot XMI.value="false"/>
+          <isActive XMI.value = "false"/>
+        </Class>
+      </ownedElement>
+      <ownedElement>
+        <Class XMI.id = "S.100075">
+          <name>SeismogramLocator</name>
+          <visibility XMI.value = "public"/>
+          <isAbstract XMI.value="false"/>
+          <isLeaf XMI.value="false"/>
+          <isRoot XMI.value="false"/>
+          <isActive XMI.value = "false"/>
+        </Class>
+      </ownedElement>
+      <ownedElement>
+        <Class XMI.id = "S.100076">
+          <name>FactoryMirrorManager</name>
+          <visibility XMI.value = "public"/>
+          <isAbstract XMI.value="false"/>
+          <isLeaf XMI.value="false"/>
+          <isRoot XMI.value="false"/>
+          <isActive XMI.value = "false"/>
+        </Class>
+      </ownedElement>
+      <ownedElement>
+        <Class XMI.id = "S.100078">
+          <name>Controller</name>
+          <visibility XMI.value = "public"/>
+          <isAbstract XMI.value="false"/>
+          <isLeaf XMI.value="false"/>
+          <isRoot XMI.value="false"/>
+          <isActive XMI.value = "false"/>
+        </Class>
+      </ownedElement>
+      <ownedElement>
+        <Class XMI.id = "S.100079">
+          <name>SeismogramMgr</name>
+          <visibility XMI.value = "public"/>
+          <isAbstract XMI.value="false"/>
+          <isLeaf XMI.value="false"/>
+          <isRoot XMI.value="false"/>
+          <isActive XMI.value = "false"/>
+        </Class>
+      </ownedElement>
+      <ownedElement>
+        <Class XMI.id = "S.100080">
+          <name>Seismogram</name>
+          <visibility XMI.value = "public"/>
+          <isAbstract XMI.value="false"/>
+          <isLeaf XMI.value="false"/>
+          <isRoot XMI.value="false"/>
+          <isActive XMI.value = "false"/>
+        </Class>
+      </ownedElement>
+      <ownedElement>
+        <Generalization XMI.id = "S.100094">
+          <name></name>
+          <visibility XMI.value = "public"/>
+          <discriminator>
+          </discriminator>
+          <subtype> <XMI.reference target="S.100074"/> </subtype>
+          <!-- subtype is: SeismogramFactory -->
+          <supertype> <XMI.reference target="S.100073"/> </supertype>
+          <!-- supertype is: SeismogramFinder -->
+        </Generalization>
+      </ownedElement>
+      <ownedElement>
+        <Generalization XMI.id = "S.100095">
+          <name></name>
+          <visibility XMI.value = "public"/>
+          <discriminator>
+          </discriminator>
+          <subtype> <XMI.reference target="S.100073"/> </subtype>
+          <!-- subtype is: SeismogramFinder -->
+          <supertype> <XMI.reference target="S.100027"/> </supertype>
+          <!-- supertype is: SeismogramComponent -->
+        </Generalization>
+      </ownedElement>
+      <ownedElement>
+        <Association XMI.id="S.100096">
+          <name></name>
+          <visibility XMI.value = "public"/>
+          <isAbstract XMI.value="false"/>
+          <isLeaf XMI.value="false"/>
+          <isRoot XMI.value="false"/>
+            <connection>
+              <AssociationEnd XMI.id = "S.100097">
+                <name></name>
+                <visibility XMI.value = "public"/>
+                <isNavigable XMI.value="false"/>
+                <isOrdered XMI.value="false"/>
+                <aggregation XMI.value="none"/>
+                <multiplicity>1</multiplicity>
+                <changeable XMI.value="none"/>
+                <targetScope XMI.value="instance"/>
+                <type> <XMI.reference target="S.100073"/> </type>
+                <!-- Type is: SeismogramFinder -->
+              </AssociationEnd>
+            </connection>
+            <connection>
+              <AssociationEnd XMI.id = "S.100098">
+                <name></name>
+                <visibility XMI.value = "public"/>
+                <isNavigable XMI.value="true"/>
+                <isOrdered XMI.value="false"/>
+                <aggregation XMI.value="none"/>
+                <multiplicity>1</multiplicity>
+                <changeable XMI.value="none"/>
+                <targetScope XMI.value="instance"/>
+                <type> <XMI.reference target="S.100075"/> </type>
+                <!-- Type is: SeismogramLocator -->
+              </AssociationEnd>
+            </connection>
+        </Association>
+      </ownedElement>
+      <ownedElement>
+        <Association XMI.id="S.100099">
+          <name></name>
+          <visibility XMI.value = "public"/>
+          <isAbstract XMI.value="false"/>
+          <isLeaf XMI.value="false"/>
+          <isRoot XMI.value="false"/>
+            <connection>
+              <AssociationEnd XMI.id = "S.100100">
+                <name></name>
+                <visibility XMI.value = "public"/>
+                <isNavigable XMI.value="false"/>
+                <isOrdered XMI.value="false"/>
+                <aggregation XMI.value="none"/>
+                <multiplicity>1</multiplicity>
+                <changeable XMI.value="none"/>
+                <targetScope XMI.value="instance"/>
+                <type> <XMI.reference target="S.100075"/> </type>
+                <!-- Type is: SeismogramLocator -->
+              </AssociationEnd>
+            </connection>
+            <connection>
+              <AssociationEnd XMI.id = "S.100101">
+                <name></name>
+                <visibility XMI.value = "public"/>
+                <isNavigable XMI.value="true"/>
+                <isOrdered XMI.value="false"/>
+                <aggregation XMI.value="none"/>
+                <multiplicity>1</multiplicity>
+                <changeable XMI.value="none"/>
+                <targetScope XMI.value="instance"/>
+                <type> <XMI.reference target="S.100076"/> </type>
+                <!-- Type is: FactoryMirrorManager -->
+              </AssociationEnd>
+            </connection>
+        </Association>
+      </ownedElement>
+      <ownedElement>
+        <Association XMI.id="S.100105">
+          <name></name>
+          <visibility XMI.value = "public"/>
+          <isAbstract XMI.value="false"/>
+          <isLeaf XMI.value="false"/>
+          <isRoot XMI.value="false"/>
+            <connection>
+              <AssociationEnd XMI.id = "S.100106">
+                <name></name>
+                <visibility XMI.value = "public"/>
+                <isNavigable XMI.value="false"/>
+                <isOrdered XMI.value="false"/>
+                <aggregation XMI.value="none"/>
+                <multiplicity>0..*</multiplicity>
+                <changeable XMI.value="none"/>
+                <targetScope XMI.value="instance"/>
+                <type> <XMI.reference target="S.100075"/> </type>
+                <!-- Type is: SeismogramLocator -->
+              </AssociationEnd>
+            </connection>
+            <connection>
+              <AssociationEnd XMI.id = "S.100107">
+                <name></name>
+                <visibility XMI.value = "public"/>
+                <isNavigable XMI.value="true"/>
+                <isOrdered XMI.value="false"/>
+                <aggregation XMI.value="none"/>
+                <multiplicity>1</multiplicity>
+                <changeable XMI.value="none"/>
+                <targetScope XMI.value="instance"/>
+                <type> <XMI.reference target="S.100078"/> </type>
+                <!-- Type is: Controller -->
+              </AssociationEnd>
+            </connection>
+        </Association>
+      </ownedElement>
+      <ownedElement>
+        <Association XMI.id="S.100108">
+          <name></name>
+          <visibility XMI.value = "public"/>
+          <isAbstract XMI.value="false"/>
+          <isLeaf XMI.value="false"/>
+          <isRoot XMI.value="false"/>
+            <connection>
+              <AssociationEnd XMI.id = "S.100109">
+                <name></name>
+                <visibility XMI.value = "public"/>
+                <isNavigable XMI.value="false"/>
+                <isOrdered XMI.value="false"/>
+                <aggregation XMI.value="none"/>
+                <multiplicity>1</multiplicity>
+                <changeable XMI.value="none"/>
+                <targetScope XMI.value="instance"/>
+                <type> <XMI.reference target="S.100075"/> </type>
+                <!-- Type is: SeismogramLocator -->
+              </AssociationEnd>
+            </connection>
+            <connection>
+              <AssociationEnd XMI.id = "S.100110">
+                <name></name>
+                <visibility XMI.value = "public"/>
+                <isNavigable XMI.value="true"/>
+                <isOrdered XMI.value="false"/>
+                <aggregation XMI.value="none"/>
+                <multiplicity>1</multiplicity>
+                <changeable XMI.value="none"/>
+                <targetScope XMI.value="instance"/>
+                <type> <XMI.reference target="S.100079"/> </type>
+                <!-- Type is: SeismogramMgr -->
+              </AssociationEnd>
+            </connection>
+        </Association>
+      </ownedElement>
+      <ownedElement>
+        <Association XMI.id="S.100111">
+          <name></name>
+          <visibility XMI.value = "public"/>
+          <isAbstract XMI.value="false"/>
+          <isLeaf XMI.value="false"/>
+          <isRoot XMI.value="false"/>
+            <connection>
+              <AssociationEnd XMI.id = "S.100112">
+                <name></name>
+                <visibility XMI.value = "public"/>
+                <isNavigable XMI.value="true"/>
+                <isOrdered XMI.value="false"/>
+                <aggregation XMI.value="none"/>
+                <multiplicity>1</multiplicity>
+                <changeable XMI.value="none"/>
+                <targetScope XMI.value="instance"/>
+                <type> <XMI.reference target="S.100078"/> </type>
+                <!-- Type is: Controller -->
+              </AssociationEnd>
+            </connection>
+            <connection>
+              <AssociationEnd XMI.id = "S.100113">
+                <name></name>
+                <visibility XMI.value = "public"/>
+                <isNavigable XMI.value="true"/>
+                <isOrdered XMI.value="false"/>
+                <aggregation XMI.value="none"/>
+                <multiplicity>1</multiplicity>
+                <changeable XMI.value="none"/>
+                <targetScope XMI.value="instance"/>
+                <type> <XMI.reference target="S.100080"/> </type>
+                <!-- Type is: Seismogram -->
+              </AssociationEnd>
+            </connection>
+        </Association>
+      </ownedElement>
+      <ownedElement>
+        <Association XMI.id="S.100114">
+          <name></name>
+          <visibility XMI.value = "public"/>
+          <isAbstract XMI.value="false"/>
+          <isLeaf XMI.value="false"/>
+          <isRoot XMI.value="false"/>
+            <connection>
+              <AssociationEnd XMI.id = "S.100115">
+                <name></name>
+                <visibility XMI.value = "public"/>
+                <isNavigable XMI.value="true"/>
+                <isOrdered XMI.value="false"/>
+                <aggregation XMI.value="none"/>
+                <multiplicity>1</multiplicity>
+                <changeable XMI.value="none"/>
+                <targetScope XMI.value="instance"/>
+                <type> <XMI.reference target="S.100027"/> </type>
+                <!-- Type is: SeismogramComponent -->
+              </AssociationEnd>
+            </connection>
+            <connection>
+              <AssociationEnd XMI.id = "S.100116">
+                <name></name>
+                <visibility XMI.value = "public"/>
+                <isNavigable XMI.value="false"/>
+                <isOrdered XMI.value="false"/>
+                <aggregation XMI.value="none"/>
+                <multiplicity>1</multiplicity>
+                <changeable XMI.value="none"/>
+                <targetScope XMI.value="instance"/>
+                <type> <XMI.reference target="S.100075"/> </type>
+                <!-- Type is: SeismogramLocator -->
+              </AssociationEnd>
+            </connection>
+        </Association>
+      </ownedElement>
+      <ownedElement>
+        <Class XMI.id = "S.100117">
+          <name>SeismogramAccess</name>
+          <visibility XMI.value = "public"/>
+          <isAbstract XMI.value="false"/>
+          <isLeaf XMI.value="false"/>
+          <isRoot XMI.value="false"/>
+          <isActive XMI.value = "false"/>
+        </Class>
+      </ownedElement>
+      <ownedElement>
+        <Generalization XMI.id = "S.100118">
+          <name></name>
+          <visibility XMI.value = "public"/>
+          <discriminator>
+          </discriminator>
+          <subtype> <XMI.reference target="S.100080"/> </subtype>
+          <!-- subtype is: Seismogram -->
+          <supertype> <XMI.reference target="S.100117"/> </supertype>
+          <!-- supertype is: SeismogramAccess -->
+        </Generalization>
+      </ownedElement>
+      <ownedElement>
+        <Class XMI.id = "S.100119">
+          <name>SeismogramAdmin</name>
+          <visibility XMI.value = "public"/>
+          <isAbstract XMI.value="false"/>
+          <isLeaf XMI.value="false"/>
+          <isRoot XMI.value="false"/>
+          <isActive XMI.value = "false"/>
+        </Class>
+      </ownedElement>
+      <ownedElement>
+        <Generalization XMI.id = "S.100120">
+          <name></name>
+          <visibility XMI.value = "public"/>
+          <discriminator>
+          </discriminator>
+          <subtype> <XMI.reference target="S.100080"/> </subtype>
+          <!-- subtype is: Seismogram -->
+          <supertype> <XMI.reference target="S.100119"/> </supertype>
+          <!-- supertype is: SeismogramAdmin -->
+        </Generalization>
+      </ownedElement>
+      <ownedElement>
+        <Class XMI.id = "S.100121">
+          <name>POA</name>
+          <visibility XMI.value = "public"/>
+          <isAbstract XMI.value="false"/>
+          <isLeaf XMI.value="false"/>
+          <isRoot XMI.value="false"/>
+          <isActive XMI.value = "false"/>
+        </Class>
+      </ownedElement>
+      <ownedElement>
+        <Association XMI.id="S.100122">
+          <name></name>
+          <visibility XMI.value = "public"/>
+          <isAbstract XMI.value="false"/>
+          <isLeaf XMI.value="false"/>
+          <isRoot XMI.value="false"/>
+            <connection>
+              <AssociationEnd XMI.id = "S.100123">
+                <name></name>
+                <visibility XMI.value = "public"/>
+                <isNavigable XMI.value="true"/>
+                <isOrdered XMI.value="false"/>
+                <aggregation XMI.value="none"/>
+                <multiplicity>1</multiplicity>
+                <changeable XMI.value="none"/>
+                <targetScope XMI.value="instance"/>
+                <type> <XMI.reference target="S.100121"/> </type>
+                <!-- Type is: POA -->
+              </AssociationEnd>
+            </connection>
+            <connection>
+              <AssociationEnd XMI.id = "S.100124">
+                <name></name>
+                <visibility XMI.value = "public"/>
+                <isNavigable XMI.value="true"/>
+                <isOrdered XMI.value="false"/>
+                <aggregation XMI.value="none"/>
+                <multiplicity>1</multiplicity>
+                <changeable XMI.value="none"/>
+                <targetScope XMI.value="instance"/>
+                <type> <XMI.reference target="S.100075"/> </type>
+                <!-- Type is: SeismogramLocator -->
+              </AssociationEnd>
+            </connection>
+        </Association>
+      </ownedElement>
+      <ownedElement>
+        <Class XMI.id = "S.100125">
+          <name>SeismogramMirrorRegistry</name>
+          <visibility XMI.value = "public"/>
+          <isAbstract XMI.value="false"/>
+          <isLeaf XMI.value="false"/>
+          <isRoot XMI.value="false"/>
+          <isActive XMI.value = "false"/>
+        </Class>
+      </ownedElement>
+      <ownedElement>
+        <Association XMI.id="S.100126">
+          <name></name>
+          <visibility XMI.value = "public"/>
+          <isAbstract XMI.value="false"/>
+          <isLeaf XMI.value="false"/>
+          <isRoot XMI.value="false"/>
+            <connection>
+              <AssociationEnd XMI.id = "S.100127">
+                <name></name>
+                <visibility XMI.value = "public"/>
+                <isNavigable XMI.value="false"/>
+                <isOrdered XMI.value="false"/>
+                <aggregation XMI.value="none"/>
+                <multiplicity>1</multiplicity>
+                <changeable XMI.value="none"/>
+                <targetScope XMI.value="instance"/>
+                <type> <XMI.reference target="S.100078"/> </type>
+                <!-- Type is: Controller -->
+              </AssociationEnd>
+            </connection>
+            <connection>
+              <AssociationEnd XMI.id = "S.100128">
+                <name></name>
+                <visibility XMI.value = "public"/>
+                <isNavigable XMI.value="true"/>
+                <isOrdered XMI.value="false"/>
+                <aggregation XMI.value="none"/>
+                <multiplicity>1</multiplicity>
+                <changeable XMI.value="none"/>
+                <targetScope XMI.value="instance"/>
+                <type> <XMI.reference target="S.100125"/> </type>
+                <!-- Type is: SeismogramMirrorRegistry -->
+              </AssociationEnd>
+            </connection>
+        </Association>
+      </ownedElement>
+    </Model>
+    <Collaboration XMI.id = "S.100092">
+      <name>Collaboration</name>
+      <visibility XMI.value = "public"/>
+      <interaction>
+        <Interaction XMI.id = "S.100093">
+          <name>Interaction</name>
+          <visibility XMI.value = "public"/>
+        </Interaction>
+      </interaction>
+    </Collaboration>
+    <Class XMI.id = "S.100024">
+      <name>Stack</name>
+      <visibility XMI.value = "public"/>
+      <isAbstract XMI.value="false"/>
+      <isLeaf XMI.value="false"/>
+      <isRoot XMI.value="false"/>
+      <isActive XMI.value = "false"/>
+    </Class>
+    <Class XMI.id = "S.100019">
+      <name>Rectangle</name>
+      <visibility XMI.value = "public"/>
+      <isAbstract XMI.value="false"/>
+      <isLeaf XMI.value="false"/>
+      <isRoot XMI.value="false"/>
+      <isActive XMI.value = "false"/>
+    </Class>
+    <Class XMI.id = "S.100016">
+      <name>Long</name>
+      <visibility XMI.value = "public"/>
+      <isAbstract XMI.value="false"/>
+      <isLeaf XMI.value="false"/>
+      <isRoot XMI.value="false"/>
+      <isActive XMI.value = "false"/>
+    </Class>
+    <DataType XMI.id = "S.100008">
+      <name>byte</name>
+      <visibility XMI.value = "public"/>
+      <isAbstract XMI.value="false"/>
+      <isLeaf XMI.value="false"/>
+      <isRoot XMI.value="false"/>
+    </DataType>
+    <DataType XMI.id = "S.100005">
+      <name>char</name>
+      <visibility XMI.value = "public"/>
+      <isAbstract XMI.value="false"/>
+      <isLeaf XMI.value="false"/>
+      <isRoot XMI.value="false"/>
+    </DataType>
+    <Class XMI.id = "S.100021">
+      <name>Color</name>
+      <visibility XMI.value = "public"/>
+      <isAbstract XMI.value="false"/>
+      <isLeaf XMI.value="false"/>
+      <isRoot XMI.value="false"/>
+      <isActive XMI.value = "false"/>
+    </Class>
+    <DataType XMI.id = "S.100010">
+      <name>float</name>
+      <visibility XMI.value = "public"/>
+      <isAbstract XMI.value="false"/>
+      <isLeaf XMI.value="false"/>
+      <isRoot XMI.value="false"/>
+    </DataType>
+    <Class XMI.id = "S.100014">
+      <name>Boolean</name>
+      <visibility XMI.value = "public"/>
+      <isAbstract XMI.value="false"/>
+      <isLeaf XMI.value="false"/>
+      <isRoot XMI.value="false"/>
+      <isActive XMI.value = "false"/>
+    </Class>
+    <DataType XMI.id = "S.100007">
+      <name>boolean</name>
+      <visibility XMI.value = "public"/>
+      <isAbstract XMI.value="false"/>
+      <isLeaf XMI.value="false"/>
+      <isRoot XMI.value="false"/>
+    </DataType>
+    <Class XMI.id = "S.100018">
+      <name>Double</name>
+      <visibility XMI.value = "public"/>
+      <isAbstract XMI.value="false"/>
+      <isLeaf XMI.value="false"/>
+      <isRoot XMI.value="false"/>
+      <isActive XMI.value = "false"/>
+    </Class>
+    <Class XMI.id = "S.100003">
+      <name>String</name>
+      <visibility XMI.value = "public"/>
+      <isAbstract XMI.value="false"/>
+      <isLeaf XMI.value="false"/>
+      <isRoot XMI.value="false"/>
+      <isActive XMI.value = "false"/>
+    </Class>
+    <Class XMI.id = "S.100023">
+      <name>Hashtable</name>
+      <visibility XMI.value = "public"/>
+      <isAbstract XMI.value="false"/>
+      <isLeaf XMI.value="false"/>
+      <isRoot XMI.value="false"/>
+      <isActive XMI.value = "false"/>
+    </Class>
+    <Class XMI.id = "S.100020">
+      <name>Point</name>
+      <visibility XMI.value = "public"/>
+      <isAbstract XMI.value="false"/>
+      <isLeaf XMI.value="false"/>
+      <isRoot XMI.value="false"/>
+      <isActive XMI.value = "false"/>
+    </Class>
+    <DataType XMI.id = "S.100006">
+      <name>int</name>
+      <visibility XMI.value = "public"/>
+      <isAbstract XMI.value="false"/>
+      <isLeaf XMI.value="false"/>
+      <isRoot XMI.value="false"/>
+    </DataType>
+    <Class XMI.id = "S.100013">
+      <name>Integer</name>
+      <visibility XMI.value = "public"/>
+      <isAbstract XMI.value="false"/>
+      <isLeaf XMI.value="false"/>
+      <isRoot XMI.value="false"/>
+      <isActive XMI.value = "false"/>
+    </Class>
+    <Class XMI.id = "S.100012">
+      <name>Character</name>
+      <visibility XMI.value = "public"/>
+      <isAbstract XMI.value="false"/>
+      <isLeaf XMI.value="false"/>
+      <isRoot XMI.value="false"/>
+      <isActive XMI.value = "false"/>
+    </Class>
+    <Class XMI.id = "S.100015">
+      <name>Byte</name>
+      <visibility XMI.value = "public"/>
+      <isAbstract XMI.value="false"/>
+      <isLeaf XMI.value="false"/>
+      <isRoot XMI.value="false"/>
+      <isActive XMI.value = "false"/>
+    </Class>
+    <Class XMI.id = "S.100022">
+      <name>Vector</name>
+      <visibility XMI.value = "public"/>
+      <isAbstract XMI.value="false"/>
+      <isLeaf XMI.value="false"/>
+      <isRoot XMI.value="false"/>
+      <isActive XMI.value = "false"/>
+    </Class>
+    <DataType XMI.id = "S.100011">
+      <name>double</name>
+      <visibility XMI.value = "public"/>
+      <isAbstract XMI.value="false"/>
+      <isLeaf XMI.value="false"/>
+      <isRoot XMI.value="false"/>
+    </DataType>
+    <Class XMI.id = "S.100017">
+      <name>Float</name>
+      <visibility XMI.value = "public"/>
+      <isAbstract XMI.value="false"/>
+      <isLeaf XMI.value="false"/>
+      <isRoot XMI.value="false"/>
+      <isActive XMI.value = "false"/>
+    </Class>
+    <DataType XMI.id = "S.100009">
+      <name>long</name>
+      <visibility XMI.value = "public"/>
+      <isAbstract XMI.value="false"/>
+      <isLeaf XMI.value="false"/>
+      <isRoot XMI.value="false"/>
+    </DataType>
+    <DataType XMI.id = "S.100004">
+      <name>void</name>
+      <visibility XMI.value = "public"/>
+      <isAbstract XMI.value="false"/>
+      <isLeaf XMI.value="false"/>
+      <isRoot XMI.value="false"/>
+    </DataType>
+  </XMI.content>
+</XMI>

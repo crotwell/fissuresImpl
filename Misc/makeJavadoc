@@ -1,0 +1,25 @@
+#!/bin/sh
+
+javadoc -J-mx64M -protected -sourcepath .. -d ../javadocs -splitindex \
+edu.iris.Fissures \
+edu.iris.Fissures.IfAuditSystem \
+edu.iris.Fissures.IfDataCenter \
+edu.iris.Fissures.IfNetworkMgr \
+edu.iris.Fissures.IfParameterMgr \
+edu.iris.Fissures.IfSeismogramMgr \
+edu.iris.Fissures.IfService \
+edu.iris.Fissures.IfTimeSeries \
+edu.iris.Fissures.IfTravelTimeCalculator \
+edu.iris.Fissures.travelTimeCalculator \
+edu.iris.Fissures.auditSystem \
+edu.iris.Fissures.dataCenter \
+edu.iris.Fissures.databaseMgr \
+edu.iris.Fissures.display \
+edu.iris.Fissures.eventMgr \
+edu.iris.Fissures.model \
+edu.iris.Fissures.networkMgr \
+edu.iris.Fissures.seismogramMgr \
+edu.iris.Fissures.utility \
+edu.iris.Fissures.liss \
+edu.iris.Fissures.seed 
+

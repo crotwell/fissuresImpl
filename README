@@ -1,0 +1,63 @@
+
+FISSURES 1.0b5               
+
+This is a snapshot of the FISSURES development done at USC. It is NOT a 
+distribution as there are many known bugs, and much code that is in an 
+incomplete state. 
+
+The purpose of this snapshot is to allow you to browse the classes and to get
+a feel for the volume and structure of FISSURES as it stands now. There are
+html "javadoc" pages with all of the classes located in the javadocs directory.
+Just "netscape javadocs/index.html" to browse them.
+
+See the COPYING file for the Gnu Public License that covers this distribution.
+
+I have begin to use Ant for controlling the compilation. It is a java and xml
+based tool that functions similarly to make, although better in many ways. You
+can get it from jakarta.apache.org. The build.xml file is the ant equivalent of
+a makefile.
+
+The directories in here are:
+
+doc     - some documentation
+javadocs - javadoc output from the java code. Allows browsing of the classes.
+IDL     - the idl developed so far in the project. This is used to create
+                many of the classes. A build.xml file is provided that 
+                only compiles the IDL.
+Startup - some startup scripts, not for the faint of heart.
+edu     - the java source code for human-written FISSURES code., ie not 
+                automatically generated from the IDL. 
+Misc    - some miscellaneous files of little interest
+
+The packages within the edu directory include:
+edu.iris.Fissures.model implementation of Fissures general classes
+edu.iris.Fissures.auditSystem - the implementation of the audit system
+edu.iris.Fissures.databaseMgr - some database support for the dataCenter
+edu.iris.Fissures.display - some useful display utility classes
+edu.iris.Fissures.networkDC - the implementation of IfNetworkDC
+edu.iris.Fissures.networkMgr - the implementation of IfNetworkMgr
+edu.iris.Fissures.eventDC - the implementation of IfEventDC
+edu.iris.Fissures.eventMgr - the implementation of IfEventMgr
+edu.iris.Fissures.seismogramDC - the implementation of IfSeismogramDC
+edu.iris.Fissures.seismogramMgr - the implementation of seismogramMgr 
+edu.iris.Fissures.utility - utility classes for Fissures
+edu.iris.Fissures.seed - classes for SEED and MSEED file formats
+edu.iris.Fissures.liss - classes for inputing LISS into Fissures
+
+
+The IDL compiler will generate the following packages.
+edu.iris.Fissures - common classes, contains general items such as Units.
+edu.iris.Fissures.IfAuditSystem - audit system classes
+edu.iris.Fissures.IfNetwork - network classes, Channel, Station, Response
+edu.iris.Fissures.IfEvent - event classes, Event, Origin, Magnitude
+edu.iris.Fissures.IfParameterMgr - parameter classes, stores measurements
+edu.iris.Fissures.IfTimeSeries - timeseries classes, used by seismograms
+edu.iris.Fissures.IfRealTimeCollector - low level real-time data sending
+edu.iris.Fissures.IfSeismogramDC - seismogram data center classes, data request
+edu.iris.Fissures.IfSeismogramMgr -  seismogramMgr classes
+edu.iris.Fissures.IfDataSetMgr - DataSetsMgr, hierarchical data organization
+edu.iris.Fissures.IfService - generic service interface
+edu.iris.Fissures.IfTravelTimeCalculator - generic traveltime 
+                                calculator classes
+edu.iris.Fissures.IfFilter - generic timeseries filtering 
+
