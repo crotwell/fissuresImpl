@@ -76,7 +76,7 @@ public class NetworkAttrImpl extends edu.iris.Fissures.IfNetwork.NetworkAttr {
      */
     public void updateBeginTime(Time t) {
         getId().begin_time = t;
-        getEffectiveTime().start_time = t;
+        setBeginTime(t);
     }
     
     protected int dbid;
