@@ -1,38 +1,129 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <parent>
-        <groupId>edu.sc.seis</groupId>
-        <artifactId>defaults</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
-    <artifactId>fissuresImpl</artifactId>
-    <groupId>edu.sc.seis</groupId>
-    <version>1.1.10</version>
-    <mailingLists>
-        <mailingList>
-            <name>fissures-dev</name>
-            <subscribe>majordomo@iris.washington.edu</subscribe>
-            <unsubscribe>majordomo@iris.washington.edu</unsubscribe>
-            <archive/>
-        </mailingList>
-    </mailingLists>
-    <dependencies>
-        <dependency>
-            <artifactId>fissuresIDL</artifactId>
-            <groupId>edu.iris</groupId>
-        </dependency>
-        <dependency>
-            <artifactId>SeedCodec</artifactId>
-            <groupId>edu.iris.dmc</groupId>
-        </dependency>
-        <dependency>
-            <artifactId>junit-addons</artifactId>
-            <groupId>junit-addons</groupId>
-        </dependency>
-    </dependencies>
-    <build>
-        <testSourceDirectory>test</testSourceDirectory>
-    </build>
+<?xml version="1.0" encoding="UTF-8"?><project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>fissuresImpl</groupId>
+  <artifactId>fissuresImpl</artifactId>
+  <name>fissuresImpl</name>
+  <version>1.1.14internal</version>
+  <description>The fissuresImpl utility implementation has java code that implements utility and
+        commonly used parts of the Fissures framework. It does not actually provide an implemenation
+        for any services, but those wishing to implement new services will find many useful things
+        already done. Its primary purpose is to provide concrete implementation subclasses of the
+        abstract classes that are generated from the IDL compiler. In addition, there is low level
+        utility functionality for these classes.</description>
+  <url>http://www.seis.sc.edu/software/${pom.artifactId}</url>
+  <ciManagement>
+    <notifiers>
+      <notifier>
+        <configuration>
+          <address>jaster@seis.sc.edu</address>
+        </configuration>
+      </notifier>
+    </notifiers>
+  </ciManagement>
+  <inceptionYear>1999</inceptionYear>
+  <mailingLists>
+    <mailingList>
+      <name>fissures-dev</name>
+      <subscribe>majordomo@iris.washington.edu</subscribe>
+      <unsubscribe>majordomo@iris.washington.edu</unsubscribe>
+      <archive></archive>
+    </mailingList>
+  </mailingLists>
+  <developers>
+    <developer>
+      <id>crotwell</id>
+      <name>Philip Crotwell</name>
+      <organization>University of South Carolina</organization>
+      <roles>
+        <role>Module Maintainer</role>
+        <role>Java Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>telukutl</id>
+      <name>Srinivasa Telukutla</name>
+      <organization>University of South Carolina</organization>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </developer>
+  </developers>
+  <scm>
+    <url>http://roo.seis.sc.edu/fisheye/viewrep/seis/trunk/fissures</url>
+  </scm>
+  <organization>
+    <name>The IRIS Consortium</name>
+    <url>http://www.iris.edu</url>
+  </organization>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <testSourceDirectory>test</testSourceDirectory>
+    <plugins>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>**/RepositoryTest.java</exclude>
+          </excludes>
+          <includes>
+            <include>**/*Test.java</include>
+          </includes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.15</version>
+    </dependency>
+    <dependency>
+      <groupId>fissuresIDL</groupId>
+      <artifactId>fissuresIDL</artifactId>
+      <version>1.0_getset</version>
+    </dependency>
+    <dependency>
+      <groupId>SeedCodec</groupId>
+      <artifactId>SeedCodec</artifactId>
+      <version>1.0.6internal</version>
+    </dependency>
+    <dependency>
+      <groupId>junit-addons</groupId>
+      <artifactId>junit-addons</artifactId>
+      <version>1.4</version>
+      <type>test</type>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <type>test</type>
+    </dependency>
+  </dependencies>
+  <reporting>
+    <plugins>
+      <plugin>
+        <artifactId>maven-changes-plugin</artifactId>
+        <configuration>
+          <xmlPath>${basedir}/xdocs/changes.xml</xmlPath>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </reporting>
+  <distributionManagement>
+    <repository>
+      <id>default</id>
+      <name>Default Repository</name>
+      <url>hopalong.seis.sc.edu//var/www/html/software/mavenRepository</url>
+    </repository>
+    <site>
+      <id>default</id>
+      <name>Default Site</name>
+      <url>scp://hopalong.seis.sc.edu/var/www/html/software/${pom.artifactId}</url>
+    </site>
+  </distributionManagement>
 </project>
