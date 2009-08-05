@@ -2,6 +2,7 @@
 package edu.iris.Fissures.model;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import edu.iris.Fissures.Quantity;
 import edu.iris.Fissures.Unit;
@@ -36,9 +37,21 @@ public class QuantityImpl extends Quantity {
         return new QuantityImpl(q.value,
                                 UnitImpl.createUnitImpl(q.the_units));
     }
-
+    
+    /** Sets the format using a java DecimalFormat.
+     * @see http://java.sun.com/j2se/1.5.0/docs/api/java/text/DecimalFormat.html
+     * @param format
+     */
+    public void setDecimalFormat(String format) {
+        this.format = new DecimalFormat(format);
+    }
+    
     public void setFormat(NumberFormat format) {
         this.format = format;
+    }
+
+    public String formatValue(String format) {
+        return new DecimalFormat(format).format(value);
     }
 
     public double getValue() {
