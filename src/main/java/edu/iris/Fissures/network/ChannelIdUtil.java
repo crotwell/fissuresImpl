@@ -42,8 +42,8 @@ public class ChannelIdUtil {
     }
 
     public static String toStringNoDates(ChannelId id) {
-        return NetworkIdUtil.toStringNoDates(id.network_id) + "."
-                + id.station_code + "." + id.site_code + "." + id.channel_code;
+        return NetworkIdUtil.toStringNoDates(id.network_id) + NetworkIdUtil.DOT
+                + id.station_code + NetworkIdUtil.DOT + id.site_code + NetworkIdUtil.DOT + id.channel_code;
     }
 
     public static String toStringNoDates(Channel chan) {
@@ -52,13 +52,13 @@ public class ChannelIdUtil {
 
     public static String toString(ChannelId id) {
         return NetworkIdUtil.toString(id.network_id)
-                + "."
+                + NetworkIdUtil.DOT
                 + id.station_code
-                + "."
+                + NetworkIdUtil.DOT
                 + id.site_code
-                + "."
+                + NetworkIdUtil.DOT
                 + id.channel_code
-                + "."
+                + NetworkIdUtil.DOT
                 + new MicroSecondDate(id.begin_time).getFissuresTime().date_time;
     }
 
@@ -74,9 +74,9 @@ public class ChannelIdUtil {
     }
 
     public static String toStringFormatDates(ChannelId id) {
-        return NetworkIdUtil.toStringFormatDates(id.network_id) + "."
-                + id.station_code + "." + id.site_code + "." + id.channel_code
-                + "." + TimeFormatter.format(id.begin_time);
+        return NetworkIdUtil.toStringFormatDates(id.network_id) + NetworkIdUtil.DOT
+                + id.station_code + NetworkIdUtil.DOT + id.site_code + NetworkIdUtil.DOT + id.channel_code
+                + NetworkIdUtil.DOT + TimeFormatter.format(id.begin_time);
     }
 
     public static int hashCode(ChannelId id) {

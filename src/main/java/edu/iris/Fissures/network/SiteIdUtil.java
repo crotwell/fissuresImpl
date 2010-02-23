@@ -21,19 +21,19 @@ public class SiteIdUtil {
     }
 
     public static String toString(SiteId id) {
-        return NetworkIdUtil.toString(id.network_id) + "." + id.station_code
-                + "." + id.site_code + "." + id.begin_time.date_time;
+        return NetworkIdUtil.toString(id.network_id) + NetworkIdUtil.DOT + id.station_code
+                + NetworkIdUtil.DOT + id.site_code + NetworkIdUtil.DOT + id.begin_time.date_time;
     }
 
     public static String toStringFormatDates(SiteId id) {
-        return NetworkIdUtil.toStringFormatDates(id.network_id) + "."
-                + id.station_code + "." + id.site_code + "."
+        return NetworkIdUtil.toStringFormatDates(id.network_id) + NetworkIdUtil.DOT
+                + id.station_code + NetworkIdUtil.DOT + id.site_code + NetworkIdUtil.DOT
                 + TimeFormatter.format(id.begin_time);
     }
 
     public static String toStringNoDates(SiteId id) {
-        return NetworkIdUtil.toStringNoDates(id.network_id) + "."
-                + id.station_code + "." + id.site_code;
+        return NetworkIdUtil.toStringNoDates(id.network_id) + NetworkIdUtil.DOT
+                + id.station_code + NetworkIdUtil.DOT + id.site_code;
     }
     
     public static boolean areSameSite(ChannelId a, ChannelId b) {
