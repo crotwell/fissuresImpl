@@ -26,8 +26,8 @@ public class StationIdUtil {
     }
 
     public static String toString(StationId id) {
-        return NetworkIdUtil.toString(id.network_id) + ":" + id.station_code
-                + ":" + id.begin_time.date_time;
+        return NetworkIdUtil.toString(id.network_id) + NetworkIdUtil.DOT + id.station_code
+                + NetworkIdUtil.DOT + id.begin_time.date_time;
     }
 
     public static String toStringFormatDates(Station sta) {
@@ -35,8 +35,8 @@ public class StationIdUtil {
     }
 
     public static String toStringFormatDates(StationId id) {
-        return NetworkIdUtil.toStringFormatDates(id.network_id) + ":"
-                + id.station_code + ":" + TimeFormatter.format(id.begin_time);
+        return NetworkIdUtil.toStringFormatDates(id.network_id) + NetworkIdUtil.DOT
+                + id.station_code + NetworkIdUtil.DOT + TimeFormatter.format(id.begin_time);
     }
 
     public static String toStringNoDates(Station sta) {
@@ -44,7 +44,7 @@ public class StationIdUtil {
     }
 
     public static String toStringNoDates(StationId id) {
-        return NetworkIdUtil.toStringNoDates(id.network_id) + "."
+        return NetworkIdUtil.toStringNoDates(id.network_id) + NetworkIdUtil.DOT
                 + id.station_code;
     }
 

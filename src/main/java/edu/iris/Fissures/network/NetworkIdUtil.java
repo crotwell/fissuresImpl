@@ -45,19 +45,19 @@ public class NetworkIdUtil {
 
     public static String toString(NetworkId id) {
         return id.network_code
-                + "."
+                + DOT
                 + new MicroSecondDate(id.begin_time).getFissuresTime().date_time;
     }
 
     public static NetworkId fromString(String s) {
-        StringTokenizer st = new StringTokenizer(s, ".");
+        StringTokenizer st = new StringTokenizer(s, DOT);
         return new NetworkId(st.nextToken(),
                              new ISOTime(st.nextToken()).getDate()
                                      .getFissuresTime());
     }
 
     public static StringTokenizer getTokenizerAfterNetworkId(String s) {
-        StringTokenizer st = new StringTokenizer(s, ".");
+        StringTokenizer st = new StringTokenizer(s, DOT);
         st.nextToken();
         st.nextToken();
         return st;
@@ -68,7 +68,7 @@ public class NetworkIdUtil {
     }
 
     public static String toStringFormatDates(NetworkId id) {
-        return id.network_code + "." + TimeFormatter.format(id.begin_time);
+        return id.network_code + DOT + TimeFormatter.format(id.begin_time);
     }
 
     public static String toStringNoDates(NetworkAttr net) {
@@ -91,4 +91,7 @@ public class NetworkIdUtil {
     public static int hashCode(NetworkId id) {
         return 57 + toString(id).hashCode();
     }
+    
+    public static final String DOT = ".";
+    
 } // NetworkIdUtil
