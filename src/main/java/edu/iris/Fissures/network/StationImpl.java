@@ -107,4 +107,12 @@ public class StationImpl extends Station
     public void associateInDB(StationImpl indb) {
         setDbid(indb.getDbid());
     }
+
+    public static StationImpl[] implize(Station[] stations) {
+        StationImpl[] out = new StationImpl[stations.length];
+        for (int i = 0; i < stations.length; i++) {
+            out[i] = (StationImpl)stations[i];
+        }
+        return out;
+    }
 }
