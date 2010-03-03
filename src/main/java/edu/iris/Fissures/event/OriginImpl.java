@@ -31,7 +31,11 @@ import edu.iris.Fissures.model.UnitImpl;
 
 public class OriginImpl extends Origin {
 
-    protected OriginImpl() {setParmIds(new ParameterRef[0]);}
+    protected OriginImpl() {
+        // make sure things are not null
+        setParmIds(new ParameterRef[0]);
+        set_id("");
+    }
 
     /** Only for use for CORBA object serialization. */
     public static OriginImpl createEmpty() {
@@ -126,7 +130,11 @@ public class OriginImpl extends Origin {
     public int getDbid() { return dbid;}
     
     protected void set_id(String id) {
-        this.id = id;
+        if(id == null) {
+            this.id = ""+getDbid();
+        } else {
+            this.id = id;
+        }
     }
     
     public List getMagnitudeList() {
