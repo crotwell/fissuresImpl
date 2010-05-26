@@ -164,6 +164,11 @@ public class QuantityImpl extends Quantity {
                                 getUnit());
     }
 
+    public QuantityImpl abs() {
+        return new QuantityImpl(Math.abs(getValue()),
+                                getUnit());
+    }
+
     public QuantityImpl inverse() {
         return new QuantityImpl(1.0 / getValue(),
                                 getUnit().inverse());
