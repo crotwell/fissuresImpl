@@ -19,7 +19,9 @@ import edu.iris.Fissures.Sampling;
 import edu.iris.Fissures.TimeRange;
 import edu.iris.Fissures.IfNetwork.Channel;
 import edu.iris.Fissures.IfNetwork.ChannelId;
+import edu.iris.Fissures.IfNetwork.NetworkAttr;
 import edu.iris.Fissures.IfNetwork.Site;
+import edu.iris.Fissures.IfNetwork.Station;
 
 //
 // IDL:iris.edu/Fissures/IfNetwork/Channel:1.0
@@ -85,7 +87,19 @@ public class ChannelImpl extends Channel
     {
         return getId().channel_code;
     }
+    
+    /** Same as getNetworkAttr(), but returns a NetworkAttrImpl to avoid casting. */
+    public NetworkAttrImpl getNetworkAttrImpl() {
+        return (NetworkAttrImpl)getNetworkAttr();
+    }
+    
+    /** Same as getStation(), but returns a StationImpl to avoid casting. */
+    public StationImpl getStationImpl() {
+        return (StationImpl)getStation();
+    }
 
+    /** Same as getSite(), but returns a SiteImpl to avoid casting. */
+    public SiteImpl getSiteImpl() {return (SiteImpl)getSite(); }
     
     protected int dbid;
     protected void setDbid(int dbid) {
