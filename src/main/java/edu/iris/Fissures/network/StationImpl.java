@@ -15,12 +15,10 @@
 package edu.iris.Fissures.network;
 
 import edu.iris.Fissures.Location;
-import edu.iris.Fissures.Time;
 import edu.iris.Fissures.TimeRange;
 import edu.iris.Fissures.IfNetwork.NetworkAttr;
 import edu.iris.Fissures.IfNetwork.Station;
 import edu.iris.Fissures.IfNetwork.StationId;
-import edu.iris.Fissures.model.TimeUtils;
 
 //
 // IDL:iris.edu/Fissures/IfNetwork/Station:1.0
@@ -114,5 +112,10 @@ public class StationImpl extends Station
             out[i] = (StationImpl)stations[i];
         }
         return out;
+    }
+
+    /** Same as getNetworkAttr(), but returns a NetworkAttrImpl to avoid the cast. */
+    public NetworkAttrImpl getNetworkAttrImpl() {
+        return (NetworkAttrImpl)getNetworkAttr();
     }
 }
