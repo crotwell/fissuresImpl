@@ -63,6 +63,19 @@ public class SiteImpl extends Site
          comment);
     }
 
+    /** Constructs a Site with begin effective time extracted from
+    the siteId and no known end time, ie still operational, and location from the station. */
+    public SiteImpl(SiteId id,
+                    Station my_station,
+                    String comment) {
+        this(id,
+         my_station.getLocation(),
+         new TimeRange(id.begin_time,
+               edu.iris.Fissures.model.TimeUtils.timeUnknown),
+         my_station,
+         comment);
+    }
+
     //
     // IDL:iris.edu/Fissures/IfNetwork/Site/get_id:1.0
     //
