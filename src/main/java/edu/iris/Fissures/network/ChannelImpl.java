@@ -100,6 +100,35 @@ public class ChannelImpl extends Channel
 
     /** Same as getSite(), but returns a SiteImpl to avoid casting. */
     public SiteImpl getSiteImpl() {return (SiteImpl)getSite(); }
+
+    /**
+     * Calculates a default azimuth based on the orientation code,
+     * 0 for Z and N, 90 for E, -1 otherwise
+     * @param orientationCode
+     * @return
+     */
+    public static int getAzimuth(String chanCode) {
+        if (chanCode.endsWith("Z") || chanCode.endsWith("N")) {
+            return 0;
+        } else if (chanCode.endsWith("E")) {
+            return 90;
+        }
+        return -1;
+    }
+    /**
+     * Calculates a default dip based on the orientation code,
+     * -90 for Z, 0 for N and E, -1 otherwise
+     * @param orientationCode
+     * @return
+     */
+    public static int getDip(String chanCode) {
+        if (chanCode.endsWith("E") || chanCode.endsWith("N")) {
+            return 0;
+        } else if (chanCode.endsWith("Z")) {
+            return -90;
+        }
+        return -1;
+    }
     
     protected int dbid;
     protected void setDbid(int dbid) {
