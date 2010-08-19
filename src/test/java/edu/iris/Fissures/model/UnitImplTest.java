@@ -27,4 +27,11 @@ public class UnitImplTest  extends EqualsHashCodeTestCase {
         q = q.convertTo(UnitImpl.TENTHMILLISECOND);
         assertEquals((int)q.get_value(), 10);
     }
+    
+    public void testIsConvertibleTo() {
+        assertTrue(UnitImpl.SECOND.isConvertableTo(UnitImpl.SECOND));
+        assertTrue(UnitImpl.HOUR.isConvertableTo(UnitImpl.SECOND));
+        assertTrue(UnitImpl.KILOMETER.isConvertableTo(UnitImpl.METER));
+        assertTrue(UnitImpl.multiply(UnitImpl.KILOMETER_PER_SECOND, UnitImpl.DAY).isConvertableTo(UnitImpl.METER));
+    }
 }
