@@ -5,4 +5,6 @@ version = '1.1.14internal'
 dependencies {
     compile project(':fissuresIDL') { transitive = true }
     compile project(':seedCodec') { transitive = true }
+    testCompile "junit-addons:junit-addons:1.4"
+
 }
