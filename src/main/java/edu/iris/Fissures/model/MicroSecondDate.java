@@ -78,6 +78,10 @@ public class MicroSecondDate extends Date implements Serializable {
              t.leap_seconds_version);
     }
 
+    public MicroSecondDate(String isoTimeString) {
+        this(new ISOTime(isoTimeString).getDate().getMicroSecondTime());
+    }
+
     public long getMicroSecondTime() {
         return super.getTime() * 1000 + microseconds;
     }
