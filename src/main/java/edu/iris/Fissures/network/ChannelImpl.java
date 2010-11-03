@@ -152,4 +152,8 @@ public class ChannelImpl extends Channel
         }
         return out;
     }
+    
+    public String toString() {
+        return ChannelIdUtil.toStringNoDates(this);
+    }
 }

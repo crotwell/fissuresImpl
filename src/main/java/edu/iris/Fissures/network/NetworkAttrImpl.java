@@ -121,4 +121,8 @@ public class NetworkAttrImpl extends edu.iris.Fissures.IfNetwork.NetworkAttr {
     public int hashCode() {
     	return NetworkIdUtil.hashCode(get_id());
     }
+    
+    public String toString() {
+        return NetworkIdUtil.toString(this);
+    }
 }

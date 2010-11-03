@@ -118,4 +118,8 @@ public class StationImpl extends Station
     public NetworkAttrImpl getNetworkAttrImpl() {
         return (NetworkAttrImpl)getNetworkAttr();
     }
+    
+    public String toString() {
+        return StationIdUtil.toStringNoDates(this);
+    }
 }
