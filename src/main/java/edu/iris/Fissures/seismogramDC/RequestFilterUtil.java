@@ -3,7 +3,6 @@ package edu.iris.Fissures.seismogramDC;
 import edu.iris.Fissures.IfSeismogramDC.RequestFilter;
 import edu.iris.Fissures.model.TimeUtils;
 import edu.iris.Fissures.network.ChannelIdUtil;
-import edu.iris.Fissures.network.NetworkIdUtil;
 
 /**
  * @author groves Created on Nov 2, 2004

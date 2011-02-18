@@ -19,9 +19,7 @@ import edu.iris.Fissures.Sampling;
 import edu.iris.Fissures.TimeRange;
 import edu.iris.Fissures.IfNetwork.Channel;
 import edu.iris.Fissures.IfNetwork.ChannelId;
-import edu.iris.Fissures.IfNetwork.NetworkAttr;
 import edu.iris.Fissures.IfNetwork.Site;
-import edu.iris.Fissures.IfNetwork.Station;
 
 //
 // IDL:iris.edu/Fissures/IfNetwork/Channel:1.0

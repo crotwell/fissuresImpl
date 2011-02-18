@@ -15,6 +15,7 @@
 package edu.iris.Fissures.model;
 
 import java.io.Serializable;
+
 import edu.iris.Fissures.PointDistanceArea;
 import edu.iris.Fissures.Quantity;
 

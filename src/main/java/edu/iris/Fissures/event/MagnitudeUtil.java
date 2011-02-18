@@ -6,6 +6,7 @@
 package edu.iris.Fissures.event;
 
 import java.text.DecimalFormat;
+
 import edu.iris.Fissures.IfEvent.Magnitude;
 
 public class MagnitudeUtil {

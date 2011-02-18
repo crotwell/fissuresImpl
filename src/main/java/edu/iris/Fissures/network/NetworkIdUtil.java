@@ -2,6 +2,7 @@ package edu.iris.Fissures.network;
 
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
+
 import edu.iris.Fissures.IfNetwork.NetworkAttr;
 import edu.iris.Fissures.IfNetwork.NetworkId;
 import edu.iris.Fissures.model.ISOTime;

@@ -2,6 +2,7 @@
 package edu.iris.Fissures.seismogramDC;
 
 import java.io.Serializable;
+
 import edu.iris.Fissures.AuditElement;
 import edu.iris.Fissures.NotImplemented;
 import edu.iris.Fissures.Quantity;
