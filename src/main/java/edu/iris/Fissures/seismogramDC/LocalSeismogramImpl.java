@@ -2,6 +2,7 @@
 package edu.iris.Fissures.seismogramDC;
 
 import java.io.Serializable;
+
 import edu.iris.Fissures.AuditElement;
 import edu.iris.Fissures.FissuresException;
 import edu.iris.Fissures.NotImplemented;
@@ -35,7 +36,7 @@ import edu.iris.dmc.seedcodec.UnsupportedCompressionType;
  * Created: Wed Feb 23 13:19:30 2000
  *
  * @author Philip Crotwell
- * @version $Id: LocalSeismogramImpl.java 19509 2008-01-10 18:40:54Z crotwell $
+ * @version $Id: LocalSeismogramImpl.java 22094 2011-02-18 16:16:00Z crotwell $
  */
 
 public class LocalSeismogramImpl extends SeismogramAttrImpl {

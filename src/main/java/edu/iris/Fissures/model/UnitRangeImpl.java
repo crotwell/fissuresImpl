@@ -2,6 +2,7 @@
 package edu.iris.Fissures.model;
 
 import java.io.Serializable;
+
 import edu.iris.Fissures.Unit;
 import edu.iris.Fissures.UnitRange;
 

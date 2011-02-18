@@ -4,6 +4,7 @@ package edu.iris.Fissures.model;
 import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+
 import edu.iris.Fissures.Quantity;
 import edu.iris.Fissures.Unit;
 import edu.iris.Fissures.UnitBase;

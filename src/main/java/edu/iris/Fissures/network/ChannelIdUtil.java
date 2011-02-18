@@ -1,6 +1,7 @@
 package edu.iris.Fissures.network;
 
 import java.util.StringTokenizer;
+
 import edu.iris.Fissures.IfNetwork.Channel;
 import edu.iris.Fissures.IfNetwork.ChannelId;
 import edu.iris.Fissures.IfNetwork.NetworkId;

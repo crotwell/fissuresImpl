@@ -6,7 +6,6 @@ import java.util.List;
 
 import edu.iris.Fissures.Unit;
 import edu.iris.Fissures.UnitBase;
-import edu.iris.Fissures.IfEvent.Magnitude;
 
 
 /** encapsulates the meaning of a unit. All units are products of SI

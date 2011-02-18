@@ -1,6 +1,7 @@
 package edu.iris.Fissures.seismogramMgr;
 
 import java.io.Serializable;
+
 import edu.iris.Fissures.Sampling;
 import edu.iris.Fissures.Time;
 import edu.iris.Fissures.Unit;
