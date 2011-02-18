@@ -31,6 +31,7 @@ public class UnitImplTest  extends EqualsHashCodeTestCase {
     public void testIsConvertibleTo() {
         assertTrue(UnitImpl.SECOND.isConvertableTo(UnitImpl.SECOND));
         assertTrue(UnitImpl.HOUR.isConvertableTo(UnitImpl.SECOND));
+        assertTrue(UnitImpl.DAY.isConvertableTo(UnitImpl.SECOND));
         assertTrue(UnitImpl.KILOMETER.isConvertableTo(UnitImpl.METER));
         assertTrue(UnitImpl.multiply(UnitImpl.KILOMETER_PER_SECOND, UnitImpl.DAY).isConvertableTo(UnitImpl.METER));
     }
