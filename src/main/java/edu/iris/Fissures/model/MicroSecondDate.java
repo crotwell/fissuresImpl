@@ -191,7 +191,7 @@ public class MicroSecondDate extends Date implements Serializable {
     }
 
     public String toString() {
-        SimpleDateFormat df = new SimpleDateFormat("G yyyy.MM.dd HH:mm:ss.SSS zzz");
+        SimpleDateFormat df = new SimpleDateFormat("G yyyy-MM-dd HH:mm:ss.SSS zzz");
         // SimpleDateFormat df
         //   = new SimpleDateFormat ("hh:mm:ss.SSS");
         df.setTimeZone(TimeZone.getTimeZone("GMT"));
