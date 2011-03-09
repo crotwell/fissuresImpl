@@ -647,6 +647,11 @@ public class UnitImpl extends edu.iris.Fissures.Unit {
     public static final UnitImpl DAY = UnitImpl.multiply(24, HOUR, "DAY");
     public static final UnitImpl WEEK = UnitImpl.multiply(7, DAY, "WEEK");
     public static final UnitImpl FORTNIGHT = UnitImpl.multiply(14, DAY, "FORTNIGHT");
+    /** normal year of 365 days */
+    public static final UnitImpl YEAR = UnitImpl.multiply(365, DAY, "YEAR");
+    /** leap year of 366 days */
+    public static final UnitImpl LEAP_YEAR = UnitImpl.multiply(366, DAY, "LEAP_YEAR");
+    /** 365.2425 days */
     public static final UnitImpl GREGORIAN_YEAR = UnitImpl.multiply(365.2425, DAY, "GREGORIAN_YEAR");
     public static final UnitImpl MILLISECOND = new UnitImpl(UnitBase.SECOND, 1, MILLI);
     /** tenth of a milliseconds, useful for SEED time format.*/
