@@ -1,5 +1,12 @@
 package edu.iris.Fissures.seismogramDC;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import edu.iris.Fissures.IfNetwork.ChannelId;
 import edu.iris.Fissures.IfSeismogramDC.RequestFilter;
 import edu.iris.Fissures.model.TimeUtils;
 import edu.iris.Fissures.network.ChannelIdUtil;
@@ -15,7 +22,31 @@ public class RequestFilterUtil {
                 && TimeUtils.areEqual(one.start_time, two.start_time)
                 && TimeUtils.areEqual(one.end_time, two.end_time);
     }
+    
+    public static Map<String, List<RequestFilter>> splitByChannel(List<RequestFilter> rf) {
+        HashMap<String, List<RequestFilter>> out = new HashMap<String, List<RequestFilter>>();
+        for (RequestFilter requestFilter : rf) {
+            String key = ChannelIdUtil.toStringNoDates(requestFilter.channel_id);
+            if ( ! out.containsKey(key)) {
+                out.put(key, new ArrayList<RequestFilter>());
+            }
+            out.get(key).add(requestFilter);
+        }
+        return out;
+    }
 
+    public static String toString(RequestFilter[] rf) {
+        return toString(Arrays.asList(rf));
+    }
+
+    public static String toString(List<RequestFilter> rf) {
+        String s = "";
+        for (RequestFilter requestFilter : rf) {
+            s += toString(requestFilter)+"\n";
+        }
+        return s;
+    }
+    
     public static String toString(RequestFilter rf) {
         return ChannelIdUtil.toStringNoDates(rf.channel_id) + " from "
                 + rf.start_time.date_time + " to " + rf.end_time.date_time;
