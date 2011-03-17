@@ -12,6 +12,7 @@ import edu.iris.Fissures.Time;
 import edu.iris.Fissures.Unit;
 import edu.iris.Fissures.IfNetwork.ChannelId;
 import edu.iris.Fissures.IfParameterMgr.ParameterRef;
+import edu.iris.Fissures.IfSeismogramDC.LocalSeismogram;
 import edu.iris.Fissures.IfSeismogramDC.Property;
 import edu.iris.Fissures.IfSeismogramDC.SeismogramAttr;
 import edu.iris.Fissures.IfTimeSeries.EncodedData;
@@ -36,7 +37,7 @@ import edu.iris.dmc.seedcodec.UnsupportedCompressionType;
  * Created: Wed Feb 23 13:19:30 2000
  *
  * @author Philip Crotwell
- * @version $Id: LocalSeismogramImpl.java 22094 2011-02-18 16:16:00Z crotwell $
+ * @version $Id: LocalSeismogramImpl.java 22216 2011-03-17 16:58:27Z crotwell $
  */
 
 public class LocalSeismogramImpl extends SeismogramAttrImpl {
@@ -55,6 +56,21 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
      */
     public static Serializable createEmpty() {
         return new LocalSeismogramImpl();
+    }
+    
+    public static LocalSeismogramImpl implize(LocalSeismogram s) {
+        if (s instanceof LocalSeismogramImpl) {
+            return (LocalSeismogramImpl)s;
+        }
+        return new LocalSeismogramImpl(s, s.data);
+    }
+    
+    public static LocalSeismogramImpl[] implize(LocalSeismogram[] s) {
+        LocalSeismogramImpl[] out = new LocalSeismogramImpl[s.length];
+        for (int i = 0; i < out.length; i++) {
+            out[i] = implize(s[i]);
+        }
+        return out;
     }
 
 
