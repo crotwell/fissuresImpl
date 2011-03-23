@@ -13,9 +13,13 @@ import edu.iris.Fissures.model.MicroSecondDate;
  */
 public class TimeFormatter {
 
-	
+
     public static synchronized String format(Time t) {
-        return formatter.format(new MicroSecondDate(t));
+        return format(new MicroSecondDate(t));
+    }
+
+    public static synchronized String format(MicroSecondDate t) {
+        return formatter.format(t);
     }
 
     private static final DateFormat formatter;
