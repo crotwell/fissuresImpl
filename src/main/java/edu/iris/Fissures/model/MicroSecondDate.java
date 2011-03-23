@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.TimeZone;
 
 import edu.iris.Fissures.Time;
+import edu.iris.Fissures.network.TimeFormatter;
 
 /**
  * subclass of the java.util.Date class to extend the precision to microseconds
@@ -191,10 +192,6 @@ public class MicroSecondDate extends Date implements Serializable {
     }
 
     public String toString() {
-        SimpleDateFormat df = new SimpleDateFormat("G yyyy-MM-dd HH:mm:ss.SSS zzz");
-        // SimpleDateFormat df
-        //   = new SimpleDateFormat ("hh:mm:ss.SSS");
-        df.setTimeZone(TimeZone.getTimeZone("GMT"));
-        return df.format(this);
+        return TimeFormatter.format(this);
     }
 }
