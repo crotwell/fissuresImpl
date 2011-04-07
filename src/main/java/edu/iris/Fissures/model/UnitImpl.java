@@ -783,11 +783,11 @@ public class UnitImpl extends edu.iris.Fissures.Unit {
     protected void setDbid(Integer dbid) {
         this.dbid = dbid;
     }
-    protected Integer getDbid() {
+    public Integer getDbid() {
         return dbid;
     }
 
-    public List getSubUnitsList() {
+    public List<UnitImpl> getSubUnitsList() {
         // hibernate needs same collection returned from get as it put in via set for dirty checking
         if(hibernateSubUnitList != null) {return hibernateSubUnitList;}
         ArrayList out = new ArrayList();
@@ -797,11 +797,11 @@ public class UnitImpl extends edu.iris.Fissures.Unit {
         return out;
     }
     
-    protected void setSubUnitsList(List list) {
+    protected void setSubUnitsList(List<UnitImpl> list) {
         hibernateSubUnitList = list;
         elements = new UnitImpl[list.size()];
         elements = (UnitImpl[])list.toArray(elements);
     }
     
-    protected List hibernateSubUnitList = null;
+    protected List<UnitImpl> hibernateSubUnitList = null;
 }
