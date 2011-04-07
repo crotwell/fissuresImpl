@@ -8,6 +8,8 @@ import java.util.Map;
 
 import edu.iris.Fissures.IfNetwork.ChannelId;
 import edu.iris.Fissures.IfSeismogramDC.RequestFilter;
+import edu.iris.Fissures.model.MicroSecondDate;
+import edu.iris.Fissures.model.TimeInterval;
 import edu.iris.Fissures.model.TimeUtils;
 import edu.iris.Fissures.network.ChannelIdUtil;
 
@@ -50,5 +52,17 @@ public class RequestFilterUtil {
     public static String toString(RequestFilter rf) {
         return ChannelIdUtil.toStringNoDates(rf.channel_id) + " from "
                 + rf.start_time.date_time + " to " + rf.end_time.date_time;
+    }
+    
+    public static RequestFilter[] removeSmallRequests(RequestFilter[] rf, TimeInterval minSize) {
+        List<RequestFilter> out = new ArrayList<RequestFilter>();
+        for (int i = 0; i < rf.length; i++) {
+           MicroSecondDate b = new MicroSecondDate(rf[i].start_time);
+           MicroSecondDate e = new MicroSecondDate(rf[i].end_time);
+           if (e.subtract(b).greaterThan(minSize)) {
+               out.add(rf[i]);
+           }
+        }
+        return out.toArray(new RequestFilter[0]);
     }
 }
