@@ -25,6 +25,20 @@ public class RequestFilterUtil {
                 && TimeUtils.areEqual(one.end_time, two.end_time);
     }
     
+    public static boolean containsWildcard(RequestFilter rf) {
+        return rf.channel_id.network_id.network_code.equals("*") ||
+        rf.channel_id.station_code.equals("*") ||
+        rf.channel_id.site_code.equals("*") ||
+        rf.channel_id.channel_code.equals("*");
+    }
+
+    public static boolean containsWildcard(List<RequestFilter> rfList) {
+        for (RequestFilter rf : rfList) {
+            if (containsWildcard(rf)) {return true;}
+        }
+        return false;
+    }
+    
     public static Map<String, List<RequestFilter>> splitByChannel(List<RequestFilter> rf) {
         HashMap<String, List<RequestFilter>> out = new HashMap<String, List<RequestFilter>>();
         for (RequestFilter requestFilter : rf) {
