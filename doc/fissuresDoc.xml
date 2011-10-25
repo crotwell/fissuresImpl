@@ -556,9 +556,11 @@ PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
     </sect1>
     <sect1>
       <title>IfNetworkMgr</title>
+      <para>placeholder</para>
     </sect1>
     <sect1>
       <title>IfEventMgr</title>
+      <para>placeholder</para>
     </sect1>
     <sect1>
       <title>IfAuditSystem</title>
