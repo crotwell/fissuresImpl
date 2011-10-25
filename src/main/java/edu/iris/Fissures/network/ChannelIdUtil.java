@@ -79,6 +79,18 @@ public class ChannelIdUtil {
                 + id.station_code + NetworkIdUtil.DOT + id.site_code + NetworkIdUtil.DOT + id.channel_code
                 + NetworkIdUtil.DOT + TimeFormatter.format(id.begin_time);
     }
+    
+    public static String getBandCode(ChannelId id) {
+        return ""+id.channel_code.charAt(0);
+    }
+    
+    public static String getGainCode(ChannelId id) {
+        return ""+id.channel_code.charAt(1);
+    }
+    
+    public static String getOrientationCode(ChannelId id) {
+        return ""+id.channel_code.charAt(2);
+    }
 
     public static int hashCode(ChannelId id) {
         return 12 + toString(id).hashCode();
