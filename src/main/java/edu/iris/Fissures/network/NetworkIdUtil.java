@@ -25,7 +25,7 @@ public class NetworkIdUtil {
         return tempNetPattern.matcher(code).matches();
     }
 
-    private static Pattern tempNetPattern = Pattern.compile("[XYZ].?");
+    private static Pattern tempNetPattern = Pattern.compile("[1-9XYZ].?");
 
     /**
      * Compares two networkIds. Dates are only checked for temporary networks.
