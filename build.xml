@@ -1,0 +1,140 @@
+
+<project name="FISSURES" default="dist" basedir=".">
+
+<!-- set global properties for this build -->
+       <property name="src" value="src" />
+       <property name="build" value="build" />
+       <property name="dist" value="dist" />
+       <property name="doc" value="${dist}/doc" />
+       <property name="javadocs" value="${doc}/javadocs" />
+       <property name="idlok" value="true" />
+       <property file="../KeySigning/ant.props" />
+       <property name="ob_dir" value="../OrbacusSignedJars/dist" />
+       <property name="seedCodec" value="../SeedCodec/codec-1.0BetaNov22.jar" />
+
+       <path id="myclasspath">
+           <pathelement location="${build}" />
+           <pathelement location="IDL/dist/lib/FissuresIDL.jar" />
+           <pathelement location="../junit3.4/junit.jar" />
+           <pathelement location="${ob_dir}/OB.jar" />
+           <pathelement location="${ob_dir}/OBNaming.jar" />
+           <pathelement location="${ob_dir}/OBEvent.jar" />
+           <pathelement location="../TauP/taup.jar" />
+           <pathelement location="${seedCodec}" />
+       </path>
+
+       <target name="prepare">
+         <!-- Create the time stamp -->
+         <tstamp/>
+         <!-- Create the build directory structure used by compile -->
+         <mkdir dir="${build}" />
+         <mkdir dir="${dist}" />
+         <mkdir dir="${dist}/lib" />
+         <mkdir dir="${doc}" />
+         <mkdir dir="${javadocs}" />
+       </target>
+
+       <target name="idlcompile" depends="prepare" unless="idlok">
+         <!-- Compile the idl subproject and create the  -->
+          <ant dir="IDL" target="dist" />
+       </target>
+
+
+       <target name="javacompile" 
+               depends="prepare, idlcompile">
+         <!-- Compile the java code from ${src} into ${build} -->
+         <javac destdir="${build}" target="1.2">
+            <classpath refid="myclasspath" />
+            <src path="${src}" />
+            <include name="edu/iris/Fissures/*.java" />
+            <include name="edu/iris/Fissures/model/*.java" />
+            <include name="test/edu/iris/Fissures/model/*.java" />
+            <include name="edu/iris/Fissures/network/*.java" />
+            <include name="edu/iris/Fissures/event/*.java" />
+            <include name="edu/iris/Fissures/seismogramDC/*.java" />
+            <include name="edu/iris/Fissures/display/*.java" />
+            <include name="edu/iris/Fissures/seed/*.java" />
+            <exclude name="edu/iris/Fissures/seismogramMgr/*.java" />
+            <include name="edu/iris/Fissures/utility/*.java" />
+            <include name="edu/iris/Fissures/dataSetMgr/*.java" />
+
+            <exclude name="edu/iris/Fissures/display/ChannelGroupDisplay.java" />
+            <exclude name="edu/iris/Fissures/display/SimpleChannelGroupDisplay.java" />
+            <exclude name="edu/iris/Fissures/model/ChannelGroup.java" />
+            <exclude name="edu/iris/Fissures/model/DataGrouper.java" />
+            <exclude name="edu/iris/Fissures/model/DataSet.java" />
+            <exclude name="edu/iris/Fissures/model/Channel.java" />
+            <exclude name="edu/iris/Fissures/model/SeisComparator.java" />
+            <exclude name="edu/iris/Fissures/model/ExceptionFactory.java" />
+            <exclude name="edu/iris/Fissures/utility/PropLoader.java" />
+         </javac>
+       </target>
+
+       <target name="javadoc" depends="prepare">
+         <!-- Compile the javadocs from ${src} into ${javadocs} -->
+         <javadoc destdir="${javadocs}" sourcepath="${src}" 
+packagenames="edu.iris.Fissures.*,edu.iris.*"  maxmemory="64m" >
+
+            <classpath refid="myclasspath" />
+        <link href="http://java.sun.com/products/jdk/1.3/docs/api/" />
+        <link href="http://www.seis.sc.edu/software/Fissures/current/dist/doc/idljava_docs/" />
+         </javadoc>
+       </target>
+
+       <target name="jar" depends="javacompile">
+         <jar jarfile="${dist}/lib/FissuresImpl.jar" basedir="${build}" />
+       </target>
+
+       <target name="signjar" depends="jar" if="signjarpasswd">
+         <signjar jar="${dist}/lib/FissuresImpl.jar" 
+                  alias="scepp" 
+                  storepass="${signjarpasswd}"
+                  keystore="../KeySigning/SCEPPKeystore"/>
+       </target>
+
+       <target name="dist" depends="jar, signjar, javadoc">
+         <zip zipfile="${dist}/lib/FissuresImpl_src.zip" >
+              <fileset dir=".." >
+                 <exclude name="fissures/IDL/java_src/**" />
+                 <include name="fissures/edu/**/*.java" />
+                 <include name="fissures/test/**/*.java" />
+                 <include name="fissures/doc/**" />
+                 <include name="fissures/Misc/**" />
+                 <include name="fissures/Startup/**" />
+                 <include name="fissures/README" />
+                 <include name="fissures/INSTALL" />
+                 <include name="fissures/build.xml" />
+                 <exclude name="fissures/**/*.class" />
+              </fileset>
+         </zip>
+         <copy todir="${dist}">
+             <fileset dir=".">
+                 <include name="edu/**" />
+                 <include name="test/**" />
+                 <include name="doc/**" />
+                 <include name="Misc/**" />
+                 <include name="Startup/**" />
+                 <include name="README" />
+                 <include name="INSTALL" />
+                 <include name="COPYING" />
+                 <include name="OB-4.0-LICENSE" />
+                 <include name="build.xml" />
+                 <include name="IDL/*.idl" />
+                 <include name="IDL/build.xml" />
+                 <exclude name="**/*.class" />
+              </fileset>
+         </copy>
+           <copy todir="${dist}">
+             <fileset dir="IDL/dist">
+                 <include name="lib/**" />
+                 <include name="doc/**" />
+              </fileset>
+         </copy>
+       </target>
+
+       <target name="clean">
+         <!-- Delete the ${build} and ${dist} directory trees -->
+         <delete dir="${build}" />
+         <delete dir="${dist}" />
+       </target>
+</project>

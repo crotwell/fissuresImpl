@@ -1,0 +1,401 @@
+<?xml version="1.0"?>
+<document>
+
+  <properties>
+    <author email="www@seis.sc.edu">Philip Crotwell</author>  
+    <author email="rob@iris.washington.edu">Robert Casey</author>  
+    <title>Fissures SEED utility classes</title>
+  </properties>
+
+  <body>        
+    <section name="SEED -- Robert Casey, IRIS DMC (rob@iris.washington.edu)">
+<p>
+<b>SEED</b> is a seismic data exchange format in common use in the seismic 
+community.  Development of the SEED specification is headed up by members of the
+<i>Federation of Digital Seismic Networks</i> (<a href="http://www.fdsn.org">www.fdsn.org</a>).
+</p>
+<p>
+An essential goal of the FISSURES project is to have the capability of
+processing SEED data, both on the server end and the client end.  The aim is 
+to have a stand-alone set of classes that fully supports the SEED format, both
+for import and export, and facilitates the conversion of the data contained
+therein to other data formats.  It is also the goal of the SEED project to be
+able to generate objects from SEED data that can then be manipulated in an
+object-oriented application environment.
+</p>
+<p>
+This page will provide a summary of releases for FISSURES SEED, along with
+a link to the FTP download.
+</p>
+<p></p>
+    </section>
+    <section name="Test Release 1">
+<p></p>
+<p>
+<i>Date: Fri, 30 Nov 2001 15:04:13 -0800 (PST)</i>
+</p>
+<p>
+        Since September, I have begun development of an extensible Java
+class structure that will allow users and Java developers to import,
+manipulate, and export SEED data, as well as add additional authoring
+capabilities.  What I release today represents the core structure of SEED
+classes that will be integrated into FISSURES.
+</p>
+<p>
+        You will notice that the design has changed considerably from the
+previous Fissures SEED code, and I felt that this was necessary in order
+to maximize the flexibility of the code for its implementation in
+application development.  It was also necessary to create a class
+structure that would fit known design patterns so that it would be easy to
+upgrade and enhance.
+</p>
+<p>
+        This first test offering is capable of generating SEED Blockette
+objects, which can ingest binary and String input, and report back its
+contents through reference methods.  The sample test suite can be run
+through the class BlocketteFactory.  This test case is not comprehensive,
+but touches on primary usage scenarios in order to prove that the class
+structure can conceptually work.
+</p>
+<p>
+        There is more work to be done, and I have not included
+unessential code still in development.  The next phase will be to place
+classes that will call the BlocketteFactory and store the Blockette
+objects generated into a reference matrix, thereby creating an object base
+that represents one to many SEED volumes.  I hope to have that ready
+sometime in the next couple of weeks.  Some of the code has already been
+written.
+</p>
+<p>
+        Feel free to read and modify the source code for your own
+purposes, but please understand that it is a work in progress, and the
+code will change somewhat dramatically until a release version comes out.
+You can download the tar file at:
+</p>
+<p>
+<a href="ftp://ftp.iris.washington.edu/pub/beta/fissures/FissuresSeedTest1.tar">
+ftp://ftp.iris.washington.edu/pub/beta/fissures/FissuresSeedTest1.tar</a>
+</p>
+<p></p>
+    </section>
+
+    <section name="Test Release 2">
+<p></p>
+<p>
+<i>Date: Fri, 8 Feb 2002 18:12:36 -0800 (PST)</i>
+</p>
+<p>
+        The next iteration of FISSURES SEED for Java is ready for
+evaluation.  You can download the tar file from:
+</p>
+<p>
+<a href="ftp://ftp.iris.washington.edu/pub/beta/fissures/FissuresSeedTest2.tar">
+ftp://ftp.iris.washington.edu/pub/beta/fissures/FissuresSeedTest2.tar</a>
+</p>
+<p>
+        This version has been significantly enhanced and numerous bugs
+have been uncovered and fixed.  It now takes the idea of generating
+Blockette objects to another level by driving the process with a "Builder
+Pattern" of import classes that accept an incoming SEED data stream and
+generate Blockette objects for display to an output stream or internal
+storage in a special Container object that facilitates retrieval and
+cross-referencing of dictionary blockettes.
+</p>
+<p>
+        The key components of this distribution are as follows:
+</p>
+<p>
+director - this is the master class of the current distribution,
+representing the interface for applications to have SEED volumes parsed
+and retrieved.
+</p>
+<p>
+builder - this is the slave class to the director, having intimate
+knowlege of the structure of the data type that it represents.  In this
+case, there is currently one concrete builder that knows how to parse SEED
+blockettes from a data stream and generate Blockette objects.
+</p>
+<p>
+container - the classes here represent Blockette storage and retrieval, as
+well as static helper classes for information lookup.
+</p>
+<p>
+codec - the classes here handle encoding and decoding of waveform data.
+</p>
+<p>
+exception - all of the exception classes are listed here.
+</p>
+<p>
+util - generic utility classes are contained here.
+</p>
+<p>
+        Building this distribution for running is simple.  Let's say that
+you untar'ed the files into /usr/local/install (you don't have to use this
+pathname, it's just for illustration), you will notice that the root
+directory for the java classes is edu, in fact this distribution is
+nestled in a directory tree: edu/iris/Fissures/seed.  Change directory to
+edu/iris/Fissures/seed.
+</p>
+<p>
+        Now, enter each subdirectory, and run the following (assuming
+'javac' is in your $PATH):
+</p>
+<p>
+javac -classpath <em>install_dir</em> *.java
+</p>
+<p>
+or as in our example:
+</p>
+<p>
+javac -classpath /usr/local/install *.java
+</p>
+<p>
+You can make use of these classes in your own Java code, but also give the
+test routines a try to see that it runs properly.  The main routine to
+test with this distribution is the class SeedImportDirector.  You can run
+it in our example case, like this:
+</p>
+<p>
+java -classpath /usr/local/install edu.iris.Fissures.seed.director.SeedImportDirector
+</p>
+<p>
+        Running it this way will give you a usage message:
+</p>
+<p>
+usage: SeedImportDirector <em>input_file</em> [<em>output_file</em>]
+</p>
+<p>
+        There are two ways you can run this test routine.  If you provide
+an input file, which can be a full SEED file, dataless SEED file, or a
+miniSEED file, the Director will attempt to generate blockette objects,
+store it in the container, and then play back the Container contents to
+illustrate how the blockettes can be retrieved.  I will have to warn you
+that this first mode can be memory intensive, since everything is going
+into persistent objects.  I don't yet have a scheme worked out to save
+these stored objects to disk (Serialization), but I am looking at this
+issue for the next release.  You can safely read a 5 MB file and maybe
+even a 10 MB file without trouble.
+</p>
+<p>
+        The second case is triggered when you supply a second filename,
+which will be the output file for printing the Blockettes in a delimited
+string format.  Blockettes will get created, but they will just as quickly
+get thrown away, so there is not a memory issue there.
+</p>
+<p>
+        There are also some other test cases you can try, and are found in
+the following classes:
+</p>
+<p>
+container/BlocketteFactory.java -- demonstrates basic Blockette storage
+practices.
+</p>
+<p>
+container/SeedDictionaryReferenceMap.java -- lists all of the blockette
+to dictionary references.
+</p>
+<p>
+container/Waveform.java -- illustrates Steim1 compression and
+decompression at work.
+</p>
+<p>
+        Here are the issues that have not been addressed with regard to
+SEED reading as of yet:
+</p>
+<p>
+1.  Serialization of Blockettes to disk with recovery on demand.
+</p>
+<p>
+2.  Selective read filters to control which Blockettes are stored during
+SEED reading.
+</p>
+<p>
+3.  Waveform encoding identification.  Currently, the waveforms are marked
+as having an Unknown encoding type.  Want to add Blockette 1000 and
+Blockette 30 triggers to modify the encoding type.
+</p>
+<p>
+4.  Have not tested implementation of Blockette 60.  Anyone out there with
+Blockette 60's in their SEED volumes could really help me out by pointing
+out bugs in the implementation, or sharing SEED files that cause problems.
+</p>
+<p>
+5.  Have not tested implementation of byte-swapped binary data.  Also
+could use some outside help for VAX-ordered SEED data.
+</p>
+<p>
+        The main push for the next iteration is to take what we have here
+and attach another Builder pattern which will act as an Export engine. The
+general idea is that the ExportDirector will accept a Container class
+storing Blockette objects and tell a SEED concrete Builder to write a SEED
+file.  Completing this will flesh out the entire Import/Export model and
+will be instrumental in the development of the next version of Portable
+Data Collection Centers.
+</p>
+<p>
+        I welcome feedback, comments, questions, and bug reports on this
+package.  Sorry about not having it JavaDoc-ready yet.  You can run
+JavaDoc on it, but it's not nicely written for JavaDoc at this time.  My
+first concern is to get the code solidified, and then I will flesh over
+the documentation.  I also plan to write some hardcopy documentation on
+the design and use of FISSURES SEED when the project is completed.
+</p>
+<p></p>
+    </section>
+
+    <section name="Test Release 3">
+<p></p>
+<p>
+<i>Date: Wed, 20 Mar 2002 10:07:49 -0800 (PST)</i>
+</p>
+<p>
+        The next iteration of FISSURES SEED for Java is ready for
+evaluation.  You can download the tar file from:
+</p><p>
+<a href="ftp://ftp.iris.washington.edu/pub/beta/fissures/FissuresSeedTest3.tar">
+ftp://ftp.iris.washington.edu/pub/beta/fissures/FissuresSeedTest3.tar
+</a>
+</p><p>
+        In this release, an important feature has been added, and some
+fixes have been made to improve robustness and utility.
+</p><p>
+        The most important development for Test 3 is the addition of
+'serialization' to the process of building Blockette objects.
+Serialization is a technique in Java where the unique data in an object
+can be saved to disk for later retrieval.  Only unique information is
+saved during writing, and in the process of recalling the object back, a
+fresh object of the indicated class is created, wherein the data is
+reinserted in a sort of 'reconstitution' process.
+</p><p>
+        The benefit of serialization is that you can remove objects from
+system memory, which in a large enough quantity can force an Out Of Memory
+error in Java.  In terms of Java SEED, this equates to being able to read
+much larger SEED files with minimal incremental memory cost.  In fact, I
+have stress-tested the SEED utility on the IRIS IDA dataless SEED, which
+is approximately 34 MB in size.  With Blockette objects being generated
+and stored in memory, the SEED reader was soon overwhelmed, and ran out of
+memory after the first couple of stations.  With serialization turned on,
+I am able to convert the entirety of the IRIS IDA dataless SEED into a
+network of almost 200,000 indexed Blockette objects in about 6 hours.
+</p><p>
+        While this is beneficial, serialization, in its basic use, has the
+drawback of requiring the entire file to be reread from the beginning in
+order to 'reconsitute' the objects contained.  For a software package that
+is designed to allow a user to access any Blockette at any given time,
+this implementation would prove to be woefully slow, and ironically would
+run up against the aforementioned memory barrier.
+</p><p>
+        Therefore, the serialization feature was expanded to allow 'random
+access' of serialized objects from the disk.  This means that Blockette
+objects can be extracted individually from any point in the serialization
+file.  When a Blockette is serialized, a placeholder is kept in memory as
+a reference to where to find the Blockette on disk.  This is known as a
+'proxy'.  When coupled with a memory cache of Blockettes most recently
+accessed, we have an efficient model for storing and accessing blockettes.
+</p><p>
+        In the case of Blockettes being retrieved and then modified, it is
+the responsibility of the calling application to 're-add' the Blockette to
+the Container, which then makes the updated information persistent and
+binding.
+</p><p>
+        Besides serialization, another change to FISSURES SEED was a bug
+fix in the SEED reader, solving a case where the data record boundary
+detection algorithm wasn't stringent enough to differentiate a well-placed
+Blockette 54, which contained certain characters that mimicked a
+data-record pattern, from a true data record.
+</p><p>
+        Finally, the inheritance structure of the container objects was
+reorganized such that a SeedObject is now an abstract class instead of an
+interface, and the SeedObject inherently implements Serializable and
+Comparable.  The latter interface provides an object with the innate
+ability to compare itself to another, which facilitates sorting of those
+objects.  Since Blockettes inherit from SeedObject, they are now capable
+of being sorted based on their blockette type and ordering in the SEED
+file.  This was then carried over to the iterate() method of the
+SeedObjectContainer, which now sorts the objects in question before
+iteration occurs.
+</p><p>
+        You can observe this sorting facility when you run the
+SeedImportDirector main() method, which performs a demonstration test of
+the entire SEED file importation process.  The change to the demo is that
+if the second argument is the file name 'object_store.ser', it will
+trigger the serialization mode, which means that Blockette objects will be
+stored to this file as it reads SEED information.  In any case, when the
+program has finished reading all of the SEED file you provide and has
+converted it to objects, it will play back everything it has stored by
+referencing the Container.  You will notice that the playback is now
+logically ordered, due to the sorting performed by the iterate() method.
+</p><p>
+        This code update is considered an essential step to prove that
+FISSURES SEED is sufficiently scalable to realistic import loads.  The
+Blockette object context that is created from the import process is all
+easily referenced through the API and allows values to be modified and put
+back in.  This isn't intended to represent a database, yet it may be
+possible to create a 'Restore' class of some sort that could recover the
+contents of the object workspace in the event of a system crash.  Indeed,
+we could mimic a Java RMI technique by moving a serialized object cluster
+to another application and ingest it into a different system, providing
+another means of communicating SEED data.  At this point, these are just
+ideas that may eventually take hold as FISSURES SEED develops.
+</p>
+<p></p>
+    </section>
+    <section name="Test Releases 4 and 5">
+<p></p>
+<p>
+<i>Thu Aug 22 12:26:16 PDT 2002</i>
+</p>
+<p>
+	There are two releases to discuss in this section.  The first one
+is test release 4, found at:
+</p><p>
+<a href="ftp://ftp.iris.washington.edu/pub/beta/fissures/FissuresSeedTest4.jar">
+ftp://ftp.iris.washington.edu/pub/beta/fissures/FissuresSeedTest4.jar
+</a>
+</p><p>
+	Note that future releases are now JAR files, not TAR files!  The
+fourth test release really just incorporates some bug fixes to
+release 3, so the functionality is not drastically different.
+
+	The next, fifth, release is a more significant one and is the
+<i>current</i> code release for evaluation:
+</p><p>
+<a href="ftp://ftp.iris.washington.edu/pub/beta/fissures/FissuresSeedTest5.jar">
+ftp://ftp.iris.washington.edu/pub/beta/fissures/FissuresSeedTest5.jar
+</a>
+</p><p>
+	This version allows you to export your ingested information to a SEED
+volume.  The interface is fairly rudimentary, but you can read in a
+SEED file, filter for certain stations and channels, and output SEED.  Because
+the input SEED information gets collected into object form, it leaves all
+kinds of possibilities for editing SEED through Java code.
+The key is to manage your information
+in the ObjectContainer and build entries into the ExportTemplate with what
+blockettes you want to see expressed in the output volume.
+</p><p>
+	In the <i>app</i> directory is the beginnings of an application to drive
+all of these classes.  It's fairly rudimentary but will get fleshed out.  You
+will have to ignore the usage message because it lists the commands that
+I want to implement, even though they don't work that way right now.  The application
+is meant
+only to illustrate how to call the SEED classes to output SEED, but feel free to
+try it out for testing.
+</p><p>
+	The overall structure of the export side of FISSURES SEED consists of a
+director and a builder, much like the import classes.  The difference is that there
+is initially no structure with which to build a SEED volume on: you have to
+specify the structure into a template, the ExportTemplate in this case.  The
+ExportDirector then uses the ExportTemplate, which contains an ordered list of
+what blockettes the user wants to output, and provides the blockettes one at a time
+to the ExportBuilder, who knows how to construct a certain file type.  Initially,
+there is only support for SEED, dataless SEED, and miniSEED, but other formats will
+be available shortly.  The builder writes to an OutputStream with the SEED volume.
+</p><p>
+	In addition to the export capabilities, other parts of the code have been
+debugged or modified, and some amount of optimization has been done on the import
+classes to have it run faster.
+</p>
+    </section>
+
+  </body>
+</document>

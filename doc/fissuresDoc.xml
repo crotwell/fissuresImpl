@@ -1,0 +1,612 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE book 
+PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+ "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd"
+[
+<!ENTITY fissures "Fissures">
+<!ENTITY corba "CORBA">
+]> 
+
+<book>
+  <bookinfo>
+    <title>FISSURES</title>
+    <author>
+      <firstname>H.</firstname>
+      <othername>Philip</othername>
+      <surname>Crotwell</surname>
+    </author>
+    <copyright>
+      <year>2000</year>
+      <holder>University of South Carolina</holder>
+    </copyright>
+  </bookinfo>
+  <preface><title>Foreword</title>
+    <para>This is the documentation for the FISSURES system. It is not complete
+      by any stretch, and will continue to evolve as FISSURES evolves.
+    </para>
+  </preface>
+  <chapter>
+    <title>Philosophy</title>
+    <para>
+      Because &fissures; is a framework for building applications instead of
+      an application, it is useful to understand some of the philosophy 
+      behind it. 
+    </para>
+    <sect1>
+      <title>Use Standards</title>
+      <para>
+	The only way to maximize what software can do
+	for seismology is to to leverage as much as possible from the
+	software industry as a whole. The catch is that buying into 
+	commercial products and solutions often means buying into proprietary
+	systems that inhibit the ability to understand and extend them
+	as well as limiting their distribution. Thus, the most useful thing
+	to take from industry are open standards that are widely supported
+	by different vendors and are being developed in an open manner.
+	Java and &corba; both fall into this category. Other examples of
+	useful standards are ISO8601 time format definitions and XML.
+      </para>
+    </sect1>
+    <sect1>
+      <title>Develop Frameworks</title>
+      <para>
+	The lifetime of any application is limited and code written primarily 
+	for a particular application is very often hard to reuse. Frameworks
+	have longer lifetimes and can be evolved to cope with new demands as
+	they emerge. Code written with many applications in mind from
+	the beginning is, by design, easily reusable. Once a quality framework 
+	has been developed, writing applications that use the framework 
+	becomes
+	easier and so many compatible applications are created. The needs
+	of these applications can then drive the development of new code
+	within the framework.
+      </para>
+    </sect1>
+    <sect1>
+      <title>Open the Source</title>
+      <para>
+	It is hard to argue with the success of Linux and the GNU system.
+	Much has been written about the reasons for the success of open source
+	software development such as "The Cathedral and the Bazaar" by
+	Eric Raymond. In seismology in particular, there is simply not 
+	sufficient
+	resources for a centralized software factory that cranks out the tools
+	we need. The only way to maintain development over the long term is
+	to have many developers spread across not just the United States,
+	but also the world. In addition, the loss of even a single key person
+	can be the downfall of software projects that are centralized, 
+	especially at the levels of effort that seismology can afford. The only
+	way to have this network of developers is to make the source open and
+	free. 
+      </para>
+      <para>
+	Open source also means more than just distributing source code. It
+	also means effective documentation in the code, user and developer
+	manuals, and code examples that allow interested seismologists to 
+	become involved. There must also be a climate of acceptance so that
+	suggestions, comments, ideas and improvements are readily and 
+	thankfully received.
+      </para>
+    </sect1>
+    <sect1>
+      <title>Give Back</title>
+      <para>
+	For open source projects to succeed, the flow must be in two 
+	directions. The users that take the code and extend, improve
+	and fix it must be willing to give back those things to the
+	project as a whole to benefit the greater community. If the flow
+	is only outward from the core developers, than too much of the 
+	success or failure depends on that small group of developers and
+	the power of the rest of the community is wasted. 
+      </para>
+    </sect1>
+  </chapter>
+  <chapter>
+    <title>Overview</title>
+    <para></para>
+  </chapter>
+  <chapter> 
+    <title>Object Definitions</title>
+    <subtitle>Where's the seismogram?</subtitle>
+    <sect1>
+      <title>Packaging Overview</title>
+      <para>
+	The core &fissures; system has been broken in to separate packages to
+	logically group related objects so they are easier to understand and
+	to allow for different implementations of the various subsystems. We
+	have followed a naming convention that should help with locating the
+	correct code.
+      </para>
+      <para>
+	First, you must understand that &fissures; is based on &corba;. This
+	provides many benefits, but due to the demands of distributed
+	computing, there are some things that may seem strange. With the
+	exception of utility objects that are never sent 
+	<emphasis>over the wire</emphasis> such as display widgets, all
+	&fissures; objects are defined in &corba; interface definition
+	language, or <acronym>IDL</acronym>. Thus the IDL files are the 
+	authoritative reference for the structure of the objects. The 
+	<acronym>IDL</acronym> definitions are compiled into Java classes
+	by a Java <acronym>IDL</acronym> compiler. These classes are put
+	into packages that look like edu.iris.Fissures.IfSomething. Some common
+	classes, like units, are put into the edu.iris.Fissures package.
+      </para>
+      <para>
+	With the exception of simple structs, the classes in these packages
+	are declared to be abstract, as exists to provide a place for the
+	supporting code for &corba;'s needs. Most of the time it is not
+	particularly instructive to look at these classes, as the original
+	IDL is often less cluttered. The actual implementation of these classes
+	are put into parallel packages with the If removed and starting with a 
+	lower case letter. For instance, the abstract classes relating to 
+	networks and stations which come from IfNetworkMgr.idl are in
+	edu.iris.Fissures.IfNetworkMgr. The implementations of these classes
+	are in the edu.iris.Fissures.networkMgr package.
+      </para>
+      <para>
+	One additional fact that should be noted is that because the objects
+	are defined via the &corba; IDL, it is perfectly fine to create a new
+	and slightly different implementation of a subsystem. So long as it 
+	uses the same objects and interfaces from the IDL, it is &fissures;
+	friendly. The implementations that are provided should be considered
+	reference implementations that can serve as the basis for building
+	other implementations. One may find that much of the code can be 
+	used as is within new implementations of services, but creating new
+	code to interact with a different type of database is exactly what
+	&fissures; hopes to promote.
+      </para>
+      <para>
+	Packages that do not originate from within IDL are given a name
+	such as edu.iris.Fissures.display and do not have a corresponding 
+	<emphasis>If</emphasis> package. Lastly, the implementation of the
+	objects within Fissures.idl are located in edu.iris.Fissures.model. 
+      </para>
+    </sect1>
+    <sect1>
+      <title>Common Terms</title>
+      <para>The are quite a few objects in the &fissures; model that are not
+	specific to seismology. The are grouped here for easy reference and
+	are widely used throughout the rest of the model.</para>
+      <sect2>
+	<title>Units and Quantities</title>
+	<para>Units are of fundamental importance in science, and yet they 
+	  seem to rarely be given more that a passing glance in most software.
+	  We resolved from the beginning to make units first class objects
+	  within the &fissures; model and to use them wherever appropriate.
+	</para>
+	<sect3>
+	  <title>UnitBase</title>
+	  <para>With two exceptions, the &fissures; units use SI base units.
+	    These are METER, GRAM, SECOND, AMPERE, KELVIN, MOLE, CANDELA, 
+	    and COUNT. The two differences with SI are that gram is used 
+	    instead of kilogram, largely to make automatic name generation
+	    easier, and the addition of count as a convenience. </para>
+	</sect3>
+	<sect3>
+	  <title>Unit</title>
+	  <para>A unit can be of two types, either a simple unit or a composite
+	    unit. A simple unit has a single base unit while a composite unit
+	    is a product of subunits that may in turn be simple or composite.
+	    Both simple and composite units can have modifiers such as kilo.
+	    The modifiers are summarized below.
+	  </para>
+	  <variablelist>
+	    <title>Unit Modifiers</title>
+	    <varlistentry><term>power</term>
+	      <listitem>
+		<para>
+		  The power of ten that is prefixed. For instance setting
+		  power to be 3 would give units like kilometer and kilowatt.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry><term>name</term>
+	      <listitem>
+		<para>
+		  A string representation of the unit, like newton or inch. If
+		  the name is empty then the code can attempt to generate a
+		  name based on the structure. This works relatively well for 
+		  things like meters per second, but gives poor results for
+		  things like inches or minutes.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry><term>multi_factor</term>
+	      <listitem>
+		<para>
+		  A multiplication factor applied to the unit. This allows the
+		  constructions of units such as minutes, being 60 times 
+		  second, and inch, being 2.54 times centimeter.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry><term>exponent</term>
+	      <listitem>
+		<para>
+		  The exponent to which the entire unit and modifiers are 
+		  raised to indicate the dimensionality. For example, 
+		  hertz would have an exponent of -1 and liter would have
+		  an exponent of 3.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	  </variablelist>
+	</sect3>
+	<sect3>
+	  <title>Quantity</title>
+	  <para>Quantity is the object used to associate a unit and a value.
+	    It consists of a double value and a Unit object. There are two
+	    specializations of Quantity that are used, Length and TimeInterval.
+	    Length must have units compatible with a distance, like meters,
+	    and TimeInterval
+	    must have units compatible with time like seconds.</para>
+	</sect3>
+	<sect3>
+	  <title>UnitRange</title>
+	  <para>UnitRange allows a range of values to be associated with
+	    units. It consists of a Unit and two doubles, min_value and
+	    max_value.
+	  </para>
+	</sect3>
+      </sect2>
+      <sect2>
+	<title>Location</title>
+	<para>Locations in the &fissures; model are given by latitude and
+	  longitude along with a combination of elevation above sea level and
+	  a depth below that elevation. This gives the flexibility of a
+	  station being 5 meters below the surface, which is at 120
+	  meters above sea level. Many earthquake depths are given relative
+	  to sea level, and thus may always set elevation to 0. Both
+	  elevation and depth are Lengths, and so they include units.
+	  Locations also include a type to allow the distinction between
+	  geographic coordinates and geocentric, which would already include
+	  an ellipticity correction. Time will tell if this is a useful 
+	  feature or not.</para>
+      </sect2>
+      <sect2>
+	<title>Time</title>
+	<para>A object representing absolute time, unlike relative time 
+	  covered within the Unit section, has several interesting problems. 
+	  The first is the range of times. With the Y2K fiasco just over,
+	  the problem of failing to allow dates far enough into the future
+	  is well known. A second problem is one of precision, how small
+	  of a fraction of a second should be used. This is part of the 
+	  problem with the built in Date class is Java, it has only
+	  millisecond precision. While in most cases this is likely fine,
+	  there are groups that are beginning to use the tenth of millisecond
+	  precision allowed in SEED.</para>
+	<para>There seem to be two main ways of representing dates. The first
+	  is to pick a starting time, and use the number of seconds relative to
+	  that point. The Unix epoch time is a familiar example. There are 
+	  three problems with this. First, these values are unintelligible to
+	  humans. Second, there is a tradeoff between the precision with 
+	  which you can represent a time and the range of valid values. For
+	  instance, a 32 bit integer at millisecond precision has a range 
+	  of less than 50 days. While seismology software may not need 
+	  dates a thousand years into the future or picosecond precision, it
+	  is generally bad to place limits in advance. The third problem 
+	  relates to they need to transform this representation into something
+	  readable and the problem of leap seconds.
+	</para>
+	<para>The second option is to use a string representation that codes
+	  dates into a standard format. This makes dates easily understood
+	  by humans. A flexible 
+	  string representation allows arbitrary precision and dates arbitrary
+	  far into the future. Of course it is more difficult for software to
+	  manipulate dates in this form. Fissures made the judgment that the
+	  flexibility of the string representation was worth the cost and
+	  choose to use the ISO 8601 date format. However, as the epoch time
+	  format is very useful for computation, we provide an internal 
+	  MicroSecondDate class to aid in computations. While there is no
+	  reason in principle not to support all ISO8601 variations, currently
+	  only the four month-day and two julian day full formats are 
+	  supported. See the javadocs for edu.iris.Fissures.model.ISOTime
+	  for more information.
+	</para>
+      </sect2>
+    </sect1>
+    <sect1>
+      <title>Seismogram</title>
+      
+      <para>One of the most common questions about &fissures; is what does the
+	seismogram object look like. With good reason I suppose as the 
+	seismogram is in many ways the fundamental object in seismology.
+	The &fissures; seismograms, there are two, are actually a 
+	composite of several objects. Seismogram is a &corba; interface which 
+	allows applications to interact with a remote seismogram. 
+	LocalSeismogram is a more traditional object that is local to an
+	application but can be transmitted via &corba;. In computer science
+	terms Seismogram is "passed by reference" and LocalSeismogram is
+	"passed by value". SeismogramAttr is
+	the minimal metadata about the seismogram. LocalSeismogram extends
+	SeismogramAttr and Seismogram has methods to access the SeismogramAttr.
+      </para>
+      <para>Each of these object is described in more detail below as well as
+	in the Javadoc source code comments.</para>
+      <sect2>
+	<title>SeismogramAttr</title>
+	<para>The attributes of a seismogram are stored in a SeismogramAttr
+	  object. This includes an id, which is used internally </para>
+      </sect2>
+      <sect2>
+	<title>Seismogram</title>
+	<para>Seismogram is a full &corba; interface, meaning that its methods
+	  can be called remotely. It uses SeismogramAttr for its metadata
+	  and has methods for retrieving the data as well as updating
+	  the attributes and data and appending to the data. Seismogram
+	  extends from two other &corba; interfaces, SeismogramAccess and
+	  SeismogramAdmin, that provide read and write functionality 
+	  respectively.
+	</para>
+      </sect2>
+      <sect2>
+	<title>LocalSeismogram</title>
+	<para>LocalSeismogram may be the object that is most like a traditional
+	  seismogram. It is designed to be used locally within a program,
+	  hence the name. While it is not a &corba; interface like Seismogram,
+	  it is a &corba; valuetype, which allows it to be sent as an argument
+	  in &corba; method invocations. Inheritance is used so that 
+	  LocalSeismogram extends SeismogramAttr. Additionally, it contains 
+	  a SeismogramData to hold the actual timeseries data.
+	</para>
+      </sect2>
+      <sect2>
+	<title>SeismogramData</title>
+	<para>
+	  SeismogramData provides a spot to put the actual timeseries data.
+	  Were it not for the need to handle many different representations
+	  of data, it could be replaced with a simple array. However, there
+	  are good reasons for each of the representations. For instance,
+	  storing data recorded by a 16 bit digitizer as 32 bit integers 
+	  doubles the storage for no good reason. Storing integer data as 
+	  floats results in lose of precision and storing floats as integers
+	  results in lose of dynamic range. Being able to deal with compressed
+	  data without expanding it is always good. Thus, we have a data
+	  storage object that can deal with all of these representations.
+	</para>
+	<para>
+	  Most of the time programmers will be able to deal simply with the
+	  SeismogramData object, which provides access to the data and utility
+	  functionality as well. However, some understanding of the underlying
+	  representation can be useful.
+	</para>
+	<sect3>
+	  <title>TimeSeriesDataSel</title>
+	  <para>
+	    The Time Series data selector is a &corba; union, which is similar
+	    to a union in C. It can hold one of the five data types, short,
+	    long (32 bits in &corba;), float or double arrays or an EncodedData
+	    object. 
+	  </para>
+	</sect3>
+	<sect3>
+	  <title>EncodedData</title>
+	  <para>EncodedData can hold compressed data, and has flags for
+	    byte order and uses the same compression codes as SEED.
+	  </para>
+	</sect3>
+      </sect2>
+    </sect1>
+    <sect1>
+      <title>Channel</title>
+      <para>Neither of the seismograms directly contain channel information.
+	Instead, both have access to it by holding an id for the channel in
+	the SeismogramAttr object. This allows for a separation of the 
+	management of channel information and purely seismogram information.
+	The channel in the &fissures; model mirrors the conventions of having
+	a channel associated with a site, which is associated with a station,
+	which is in turn associated with a network. There is a separate object
+	for each of these. The site and station both have locations. 
+	The channel also has, via a ChannelConfig object,
+	the response information as well as information about the recording
+	instrumentation.
+      </para>
+      <sect2>
+	<title>Channel</title>
+	<para></para>
+      </sect2>
+      <sect2>
+	<title>Site</title>
+	<para></para>
+
+      </sect2>
+      <sect2>
+	<title>Station</title>
+	<para></para>
+
+      </sect2>
+      <sect2>
+	<title>Network</title>
+	<para></para>
+
+      </sect2>
+      <sect2>
+	<title>ChannelConfig</title>
+	<para></para>
+      </sect2>
+      <sect2>
+	<title></title>
+	<para></para>
+
+      </sect2>
+    </sect1>
+  </chapter>
+  <chapter>
+    <title>Using &fissures;</title>
+    <para>This chapter has a series of sections on how to do particular tasks
+      with &fissures;. This is not intended as a users manual for any 
+      particular &fissures; application, but rather as an aid to programmers
+      that wish to implement new applications that use the objects and
+      interfaces. This is also not meant as an exhaustive documentation of
+      the code, for that please see the Javadoc comments.</para>
+    <sect1>
+      <title>Creating a Seismogram</title>
+      <para></para>
+    </sect1>
+    <sect1>
+      <title>Displaying Seismograms</title>
+      <para>There are many ways to display a seismogram and different 
+	applications have different display needs. Rather than try and
+	create the perfect for everyone display system, we have created
+	a collection of objects that can be used in whole or in part 
+	to create new types of displays. There are examples, of course, but
+	that is all they are. Users are encouraged to take what pieces
+	they find useful and use them to create their own display widgets.
+      </para>
+      <para>
+	The display components are contained within the 
+	edu.iris.Fissures.display package. At the lowest level, the 
+	SeisPlotUtils class provides several methods that should be useful to 
+	just about any &fissures; display widget. This includes methods for
+	calculating the pixel value for a given time or amplitude as well as
+	the time or amplitude for a pixel value. There are methods for
+	creating fake data and sine wave seismograms that are useful for
+	testing displays and methods for calculating a pixelated version 
+	of a seismogram.
+      </para>
+      <para>
+	One step up from the simple utility functionality of SeisPlotUtils is
+	the SeismogramView. SeismogramView is a small, no-frills Java
+	component that can display a seismogram. It is configurable with an
+	amplitude range and begin and end times. The seismogram is drawn as
+	a changeable color and the remainder of the rectangular area is 
+	transparent. This simplicity is actually SeismogramView's greatest
+	strength. It handles exactly as much as is needed to display a 
+	seismogram and nothing more. Any further functionality can be handled
+	by other components that contain SeismogramViews as subcomponents.
+      </para>
+      <para>
+	SimpleSeismogramDisplay is just such a component. It uses a 
+	SeismogramView to display the actual seismogram, but then adds borders
+	with amplitude and time scales as well as a title. In addition, 
+	it uses a second SeismogramView
+	to hold a processed version of the original seismogram. This could
+	be used, for instance, to switch back and forth between a filtered and
+	unfiltered display. Due to the transparency of the SeismogramView,
+	they can even be overlaid.
+      </para>
+      <para>
+	Other more advanced displays can easily be created by building on these
+	two simple components. For instance PickSeismogramDisplay extends 
+	SimpleSeismogramDisplay to add the ability to display predicted
+	arrivals. ColumnSeismogramDisplay uses a series of 
+	SimpleSeismogramDisplays arranged in a column to display multiple
+	seismograms. On the drawing board is a RecordSectionDisplay that
+	would use SeismogramViews placed within a larger window 
+	according to distance.
+      </para>
+    </sect1>
+  </chapter>
+  <chapter>
+    <title>Major Systems</title>
+    <para>This chapter describes the major systems of &fissures; and how they
+      are intended to function.</para>
+    <sect1>
+      <title>IfDataCenter</title>
+      <para>The data center encapsulates the functionality of a seismic data
+	center, delivering seismograms to users. Its interfaces are relatively
+	small and easy to understand. In addition, the definitions of the
+	seismogram related object are mostly found in this system and so
+	many other systems will depend on IfDataCenter.</para>
+      <sect2>
+	<title>DataCenter Interface</title>
+	<para>The DataCenter interface allows three ways of getting seismogram
+	  data, all of which use the same requesting objects.</para>
+	<sect3>
+	  <title>Request Filter</title>
+	  <para>Each requesting method of the DataCenter uses a sequence
+	    of RequestFilters to specify the time slices of channels to
+	  be returned. </para>
+	</sect3>
+	<sect3>
+	  <title>Retrieve Seismograms</title>
+	  <para>This is the most direct method. The requested seismograms are
+	    the return value of the method.</para>
+	</sect3>
+	<sect3>
+	  <title>Queue Seismograms</title>
+	  <para>This is a slightly more complex type of query. It allows for a
+	    request to be submitted and for the client to check back to pick
+	    up the seismograms at a later time. It is up to the implementation
+	    of the DataCenter as to how long a fulfilled request is kept
+	    available for pickup before throwing it away.</para>
+	</sect3>
+	<sect3>
+	  <title>Request Seismograms</title>
+	  <para>This is the most complex, but in many ways the most efficient
+	    mechanism for distributing data from a data center to end users.
+	    Instead of the client "pulling" data from the data center as in
+	    the two methods, this method uses a CallBack interface that lets
+	    the data center "push" seismograms to the client as they are
+	    ready. Additionally, the CallBack interface may not be part
+	    of the client application proper, but may instead be a always
+	    available function of a local data management system.</para>
+	</sect3>
+      </sect2>
+    </sect1>
+    <sect1>
+      <title>IfSeismogramMgr</title>
+      <para>IfSeismgramMgr represents the other half, in some sense, of 
+	IfDataCenter. It provides the more local input, storage and output
+	functionality and would likely be backed by a local database. In 
+	addition, this is where the remote seismogram is defined. This 
+	seismogram interface has append methods that allow it to be used for
+	the initial data input from a recording system.
+      </para>
+    </sect1>
+    <sect1>
+      <title>IfNetworkMgr</title>
+      <para>placeholder</para>
+    </sect1>
+    <sect1>
+      <title>IfEventMgr</title>
+      <para>placeholder</para>
+    </sect1>
+    <sect1>
+      <title>IfAuditSystem</title>
+      <para>
+	This is one of the more simple systems. It defines mechanisms for 
+	creating and retrieving an audit trail for a particular object.
+	Most major objects within &fissures; are auditable, meaning that they
+	have an associated audit id that is used to query the audit system.
+      </para>
+    </sect1>
+    <sect1>
+      <title>IfParameterMgr</title>
+      <para>
+	It is not possible to envision every possible type of object that
+	will eventually be used within the &fissures; framework. In fact it
+	is expected that not only will &fissures; continue to evolve, but
+	individual researchers will have specialized needs that may not
+	always be met by the framework as a whole. In order to provide the
+	flexibility to deal with this, the parameter manager system allows
+	the storage of name-value pairs, with the value being a &corba; ANY.
+	Anys can be used to store any valid &corba; entity and can be thought
+	of as either a void pointer in C or C++, or an array of bytes that
+	includes a description of its structure. This allows a seismologist 
+	that wishes to store an X and relate it back to a Seismogram to do
+	so without altering the framework in incompatible ways.
+      </para>
+    </sect1>
+    <sect1>
+      <title>IfService</title>
+      <para>
+	In addition to the core functionality offered by the above systems,
+	&fissures; also provides the notion of services. These would generally
+	be related to processing tasks as opposed to the data storage and
+	retrieval of the core systems. IfService provides an umbrella of
+	functionality that all services likely will need, and hence they will
+	extend from IfService.  
+      </para>
+      <sect2>
+	<title>IfTravelTimeCalculator</title>
+	<para>
+	  This is the only service that is currently fully specified and 
+	  provides for the calculation of theoretical travel times. An example
+	  implementation is available in the TauP toolkit.
+	</para>
+      </sect2>
+    </sect1>
+
+  </chapter>
+</book>

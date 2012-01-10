@@ -1,0 +1,76 @@
+<?xml version = "1.0" encoding = "ISO-8859-1" ?>
+<!DOCTYPE argo SYSTEM "argo.dtd" >
+<argo>
+  <documentation>
+    <authorname></authorname>
+    <version></version>
+    <description>
+      
+    </description>
+  </documentation>
+  
+  <searchpath href="PROJECT_DIR" />
+  <member
+    type="pgml"
+    name="seimogramMgrImpl_classdiagram1.pgml"
+  />
+  <member
+    type="pgml"
+    name="seimogramMgrImpl_usecasediagram1.pgml"
+  />
+  <member
+    type="xmi"
+    name="seimogramMgrImpl.xmi"
+  />
+  <member
+    type="pgml"
+    name="seimogramMgrImpl_collaborationdiagram1.pgml"
+  />
+  <historyfile name="" />
+  <stats>
+    <stat name="clicksInToDoPane"
+         value="0" />
+    <stat name="dblClicksInToDoPane"
+         value="0" />
+    <stat name="longestToDoList"
+         value="45" />
+    <stat name="longestAdd"
+         value="4" />
+    <stat name="longestHot"
+         value="4" />
+    <stat name="numCriticsFired"
+         value="6499650" />
+    <stat name="numNotValid"
+         value="67" />
+    <stat name="numCriticsApplied"
+         value="0" />
+    <stat name="toDoPerspectivesChanged"
+         value="0" />
+    <stat name="navPerspectivesChanged"
+         value="6" />
+    <stat name="clicksInNavPane"
+         value="5" />
+    <stat name="numFinds"
+         value="0" />
+    <stat name="numJumpToRelated"
+         value="0" />
+    <stat name="numDecisionModel"
+         value="0" />
+    <stat name="numGoalsModel"
+         value="0" />
+    <stat name="numCriticBrowser"
+         value="0" />
+    <stat name="numNavConfig"
+         value="1" />
+    <stat name="numHushes"
+         value="0" />
+    <stat name="numChecks"
+         value="0" />
+    <stat name="Num_Button_Clicks"
+         value="4" />
+    <stat name="Drags_To_New"
+         value="1" />
+    <stat name="Drags_To_Existing"
+         value="10" />
+  </stats>
+</argo>

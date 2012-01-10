@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<document>
+
+  <properties>
+    <author email="www@seis.sc.edu">Philip Crotwell</author>  
+    <title>Fissures Object Location</title>
+  </properties>
+
+  <body>        
+    <section name="Introduction">
+
+      <p>
+Within a distributed object environment such has CORBA, one of the
+initial deployment concerns is object location. How/Where will clients
+locate server implementation.  The OMG architecture provides two
+possible solution to this problem: Naming Service and Trading Service.
+      </p>
+    </section>
+    <section name="Naming vs. Trading">
+      <subsection name="Naming Service">
+      <p>
+The Naming Service is analogous to the phonebook white pages. Knowing
+the name of a person and the city where they live and you can find
+their phone number.  In a Naming Service server implementations are
+given names and registered with the service under this name.  Naming
+Context, similar to file folders, can be created to provide structure
+to a Naming Service and prevent name clashes.
+      </p>
+      </subsection>
+      <subsection name="Trading Service">
+      <p>
+The Trading Service is analogous to the phonebook yellow
+pages. Knowing the type of business you are interested in you search
+for business in that category.  In a Trading service types are defined
+that identify the type of service (interface type, ...).  The service
+type can also define properties that the service may attach to the
+offering.  The properties provide a way to better identify the
+offering.  Properties can be set to be mandatory, where in, all
+registering servers must provide a value for the property.  This
+allows a framework to define known properties that clients can use to
+locate servers. By defining the appropriate properties for a service
+type clients can make intelligent decisions about server
+selection. For example, in the yellow pages you may look for business
+close to you home in a Trading Service servers and register properties
+that identify specifics about themselves.  For example, a customer
+service for cooperation may only handle customer from a specific
+region to improvement performance. These details could be defined in a
+property in the Trading allowing clients to select customer servers
+based upon this knowledge.
+      </p>
+      </subsection>
+
+      <subsection name="Comparison">
+      <p>
+Typical distributed environment begin implementation with a Naming
+Service based approach until such time as the additional feature of a
+Trading Service are required.  Thus a specification for each approach
+is being defined for the FISSURES so that each implementation can
+chose the solution best suited to their needs.
+      </p>
+      </subsection>
+    </section>
+    <section name="FISSURES and Naming Service">
+      <p>
+When using a Naming Service the service should register using reverse
+DNS notation within a top level Fissures Context.  With the interface
+name as the final Context and a unique name given to each
+implementation registered there in. The kind for each implementation
+should be appended with "_FVer" followed by the version of the IDL that
+the server supports. This can be found within the
+edu.iris.Fissures.VERSION class defined in the IDL. For example, a 
+foobar Network DataCenter (interface NetworkDC) implemented and
+hosted by the University of South Carolina (seis.sc.edu) could be
+registered as follows
+      </p>
+      <source>
+seis.sc.edu.NetowrkDC:foobar
+--------------------------------------
+NamingContext: Fissures           with kind=dns
+  NamingContext: edu              with kind=dns
+    NamingContext; sc             with kind=dns
+      NamingContext: seis         with kind=dns
+        NamingContext: NetworkDC  with king=interface 
+          Object: foobar          with kind=object_FVer1.0
+      </source>
+      <p>
+By using the interface as a NamingContext, multiple implementations
+can be registered. For example, a test implementation of the Network
+DataCenter at USC for a hypothetical version 2.0 of the IDL would be registered
+as follows. Note that the FVer in the kind allows servers for older IDL to 
+be maintained even as newer servers supporting newer versions of the IDL are 
+deployed, and clients can easily find a server than matches the version of
+the IDL for which they were created.
+      </p>
+      <source>
+seis.sc.edu.NetowrkDC:test
+--------------------------------------
+NamingContext: Fissures            with kind=dns
+  NamingContext: edu               with kind=dns
+    NamingContext; sc              with kind=dns
+      NamingContext: seis          with kind=dns
+        NamingContext: NetworkDC   with king=interface
+          Object: test             with kind=object_FVer2.0
+      </source>
+      <p>
+For a centrally maintained network (i.e. maintain by IRIS), the root
+would contain a set of Naming Context.  In the above example the IRIS
+Naming Service would have a edu NamingContext. Within this context
+would be a list of educational institution's root Naming Services. In
+the example, the edu context would contain a reference to the
+University of South Carolina's sc NamingContext within its Naming
+Service. All further contexts and registrations would be maintained
+with the University of South Carolina's system.
+      </p>
+      <p>
+This would provide a central site for object location but with minimal
+maintenance needed by the central administration.  The central system
+would only need to maintain a good reference to the root Naming
+Service of the various distributed sites.  It would be the
+responsibility of these remote sites to maintain this reference.  The
+central site would only have to maintain the appropriate NamingContext
+(i.e. edu) within the central Naming Service.
+      </p>
+    </section>
+    <section name="FISSURES and Trading Service">
+      <p>
+Within the FISSURES environment three properties are defined for all
+services to provide for unique identification: domain, instance and
+FISSURES Version.  The domain property will be used to identify the
+owning party.  The domain would be the DNS name of the hosting
+institution. For example for the University of South Carolina the
+domain property would equal seis.sc.edu. The service type would
+define the interface implemented.  The instance property will allow
+institutions to register multiple implementations of a service.
+      </p>
+      <p>
+For the examples described above the Trading Service of USC would have
+two offers registered:
+      </p>
+      <source>
+OFFER 1: 
+  SERVICETYPENAME: IR::Fissures:: IfNetwork::NetworkDC
+  PROPERTIES:
+    Domain=>seis.sc.edu
+    Instance=>default
+    FissuresVersion=>1.0
+      </source>
+      <source>
+OFFER 2: 
+  SERVICETYPENAME: IR::Fissures:: IfNetwork::NetworkDC
+  PROPERTIES:
+    Domain=>seis.sc.edu
+    Instance=>test
+    FissuresVersion=>1.0
+      </source>
+      <p>
+To provide a central entry point for lookups, Trading Services can be
+federated.  In a federated system a Trading Service will forward
+request to Trading Services it knows of.  Again with this example the
+central administrator would only be concerned with maintaining good
+references to the institutions root Trading Services. Each
+institutions would maintain their internal network.
+      </p>
+      <p>
+To protect against request becoming lost in the large federated
+system, each trading service will have a maximum hop count defined.
+The client can further limit the number of hops by providing a
+hop_count policy on a query operation.  The smallest count will be
+used.
+      </p>
+      <p>
+There are other features of the Trading Service that make it very
+favorable to a large complex environment such as dynamic property
+evaluation and proxy registration.  However, these advanced feature
+will not be described here as they are beyond the scope of initial
+object location.
+      </p>
+    </section>
+    <section name="FISSURES Registered Entries">
+      <p>
+Listed here are the FISSURES object references that will be
+registered with a location service and a brief description of each.
+      </p>
+      <p>
+DataCenter - provides access to seismogram data
+EventDC - provides access to event data
+NetworkDC - provides access to network data
+PlottableDC - provides access to very coarsly sampled "plottable" seismic data
+      </p>
+    </section>
+  </body>
+</document>

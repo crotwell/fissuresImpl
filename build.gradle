@@ -1,0 +1,72 @@
+
+group = 'edu.sc.seis'
+version = '1.1.15'
+
+dependencies {
+    compile project(':fissuresIDL') { transitive = true }
+    compile project(':seedCodec') { transitive = true }
+    testCompile "junit-addons:junit-addons:1.4"
+
+}
+
+binDistFiles = copySpec {
+    from('build/output') {
+        fileMode=0755
+        include('bin/**')
+    }
+    from('build/output') {
+        include('lib/**')
+    }
+}
+
+distFiles = copySpec {
+    with(binDistFiles)
+    from('build/docs') {
+        include('javadoc/**')
+    }
+    from('build') {
+        include('build.gradle')
+        include('settings.gradle')
+    }
+    from('.') {
+        include('gpl-3.0.txt')
+        include('README.txt')
+        include('doc/**')
+        include('src/**')
+        include('gradleWrapper/**')
+        include('gradlew.bat')
+        exclude('**/*.svn')
+    }
+    from('.') {
+        fileMode=0755
+        include('gradlew')
+    }
+    from('build') {
+        include('build.gradle')
+    }
+}
+
+
+task explodeBin(type: Sync, dependsOn: ['copyToLib' ]) {
+    group = 'dist'
+    with binDistFiles
+    into file("$buildDir/explode")
+}
+task explodeDist(type: Sync, dependsOn: ['javadoc', 'wrapper', 'explodeBin']) {
+    group = 'dist'
+    with distFiles
+    into file("$buildDir/explode")
+}
+
+
+task tarDist(type: Tar, dependsOn: [ 'explodeDist']) {
+    dirName = project.name+'-'+version
+    compression = Compression.GZIP
+    into(dirName) {
+        with distFiles
+    }
+}
+
+javadoc.options.links('http://wiki.fissuresidl.googlecode.com/hg/javadoc/')
+
+

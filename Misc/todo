@@ -1,0 +1,24 @@
+Done?   Desc
+----------------------------
+        - change data_point_count to num_points in SeismogramAttr
+        - get rid of known_phases() in IfTravelTime...phases are dynamic in taup
+        - change InformationAudit to InformationAuditSeq in update calls in repository
+                a service/app may do more than one thing before updating
+        - get rid of GroupingFilter and GroupingLevel in IfDataCenter
+        - change RequestFilter in IfDataCenter to use
+                struct Request {
+                        string network_code;
+                        string station_code;
+                        string site_id;
+                        string channel_code;
+                        Time start_time;
+                        Time end_time;
+                };
+        - allow wildcards in data request in IfDataCenter
+        - RequestSeq as the argument to the calls in IfDataCenter and
+                returning a HeavyChannelGroupSeq or SeismogramSeq?
+        - in AsyncDataCenter, there is retrieve_channel_group, but
+                request_seismograms? 
+        - get rid of LongBitBucket
+        - add key for short (16 bit) and double (64 bit) to BitBucket?
+        - change order in Quantity, more natural with value, unit

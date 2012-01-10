@@ -1,0 +1,24 @@
+
+WARNING: The FISSURES framework is actively being developed, has not yet been
+debugged and has many unimplemented or partially implemented features. Thus
+this does not constitute a true distribution, merely a snapshot of the
+development. And so "installing" it is not recomended at this point.
+
+However, if you would like to play with it, this is what you need to do.
+
+You must have a Java 1.2 or better installed. As of this writting
+Java 1.3 is the current release from Sun and is availible for Solaris,
+Linux and Windows. I mostly have used 1.2.2, but 1.3 should be fine as well
+
+You need to get and install a corba 2.3 compilant ORB. The Orbacus Java ORB 
+from OOC, Inc is the orb that has been used to develop fissures, and is the
+recommended orb. Orbacus makes a very well done Corba 2.3 compliant ORB and 
+have a "free for noncommercial" license. You are responsible for verifying 
+that you are elligible to use Orbacus under this license. You will need both 
+OB.jar which contains the ORB and OBNaming,jar, which contains the Orbacus 
+naming service. You might as well install all of Orbacus, as fissures may 
+begin to make use of other parts of it in the future. It is likely that 
+fissures will work with other Corba2.3 compilant ORBs, but it has only been 
+tested under Orbacus.
+
+Problems can be addressed to Philip Crotwell, crotwell@seis.sc.edu.
