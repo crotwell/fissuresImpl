@@ -4,7 +4,7 @@ version = '1.1.15'
 
 dependencies {
     compile project(':fissuresIDL') { transitive = true }
-    compile project(':seedcodec') { transitive = true }
+    compile project(':seedCodec') { transitive = true }
     testCompile "junit-addons:junit-addons:1.4"
 
 }
@@ -67,6 +67,6 @@ task tarDist(type: Tar, dependsOn: [ 'explodeDist']) {
     }
 }
 
-javadoc.options.links('http://wiki.fissuresidl.googlecode.com/hg/javadoc/index.html')
+javadoc.options.links('http://wiki.fissuresidl.googlecode.com/hg/javadoc/')
 
 
