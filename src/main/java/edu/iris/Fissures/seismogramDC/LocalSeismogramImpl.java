@@ -2,6 +2,8 @@
 package edu.iris.Fissures.seismogramDC;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import edu.iris.Fissures.AuditElement;
 import edu.iris.Fissures.FissuresException;
@@ -1419,8 +1421,8 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
             	throw new CodecException("Sum of number of points in all EncodedData objects ("+numFound+
             			") is not the same as the number of points in the seismogram ("+getNumPoints()+").");
             }
-            DecompressedData[] decompBuffer =
-                new DecompressedData[eData.length];
+            List<DecompressedData> decompBuffer =
+                new ArrayList<DecompressedData>(eData.length);
 
             // do we have to byte swap. ALL java is big endian, ie sparc, m68k
             // byte order regardless of the platform, so we only have
@@ -1434,28 +1436,31 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
             //  Logger.log("eData["+i+"].npts="+eData[i].num_points);
             //  }
             for (int i=0; i<eData.length; i++) {
-                decompBuffer[i] = codec.decompress(eData[i].compression,
-                                                   eData[i].values,
-                                                   eData[i].num_points,
-                                                   eData[i].byte_order);
+                if (eData[i].num_points != 0) {
+                    // skip records with no data as they often have compression set to 0
+                    decompBuffer.add(codec.decompress(eData[i].compression,
+                                                      eData[i].values,
+                                                      eData[i].num_points,
+                                                      eData[i].byte_order));
+                }
             }
 
             // search for least common demoninator of decompressed primitive
             // types. short =1, int = 3, float = 4, double = 5, so order is
             // numerical
             int type = -1;
-            for ( int i=0; i<decompBuffer.length; i++) {
-                if ( decompBuffer[i].getType() > type) {
-                    type = decompBuffer[i].getType();
+            for (DecompressedData decompressedData : decompBuffer) {
+                if ( decompressedData.getType() > type) {
+                    type = decompressedData.getType();
                 } // end of if ()
-            } // end of for ()
+            }
 
             int numSoFar = 0;
             switch ( type ) {
                 case B1000Types.SHORT:
                     short[] buffer = new short[getNumPoints()];
-                    for (int i=0; i<decompBuffer.length; i++) {
-                        short[] temp = decompBuffer[i].getAsShort();
+                    for (DecompressedData decompressedData : decompBuffer) {
+                        short[] temp = decompressedData.getAsShort();
                         System.arraycopy(temp, 0,
                                          buffer, numSoFar,
                                          temp.length);
@@ -1465,8 +1470,8 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
                     break;
                 case B1000Types.INTEGER:
                     int[] ibuffer = new int[getNumPoints()];
-                    for (int i=0; i<decompBuffer.length; i++) {
-                        int[] temp = decompBuffer[i].getAsInt();
+                    for (DecompressedData decompressedData : decompBuffer) {
+                        int[] temp = decompressedData.getAsInt();
                         System.arraycopy(temp, 0,
                                          ibuffer, numSoFar,
                                          temp.length);
@@ -1476,8 +1481,8 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
                     break;
                 case B1000Types.FLOAT:
                     float[] fbuffer = new float[getNumPoints()];
-                    for (int i=0; i<decompBuffer.length; i++) {
-                        float[] temp = decompBuffer[i].getAsFloat();
+                    for (DecompressedData decompressedData : decompBuffer) {
+                        float[] temp = decompressedData.getAsFloat();
                         System.arraycopy(temp, 0,
                                          fbuffer, numSoFar,
                                          temp.length);
@@ -1487,8 +1492,8 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
                     break;
                 case B1000Types.DOUBLE:
                     double[] dbuffer = new double[getNumPoints()];
-                    for (int i=0; i<decompBuffer.length; i++) {
-                        double[] temp = decompBuffer[i].getAsDouble();
+                    for (DecompressedData decompressedData : decompBuffer) {
+                        double[] temp = decompressedData.getAsDouble();
                         System.arraycopy(temp, 0,
                                          dbuffer, numSoFar,
                                          temp.length);
