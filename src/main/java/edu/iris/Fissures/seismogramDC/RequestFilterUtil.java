@@ -52,11 +52,22 @@ public class RequestFilterUtil {
     }
 
     public static String toString(RequestFilter[] rf) {
+        if (rf == null) { return "empty request/n";}
         return toString(Arrays.asList(rf));
+    }
+    
+    public static String toString(RequestFilter[][] rf) {
+        if (rf == null) { return "empty request/n";}
+        String out = "";
+        for (int i = 0; rf != null && i < rf.length; i++) {
+            out += i+"\n"+toString(Arrays.asList(rf[i]))+"\n";
+        }
+        return out;
     }
 
     public static String toString(List<RequestFilter> rf) {
-        String s = "";
+        if (rf == null) { return "empty request/n";}
+        String s = "Request length="+rf.size()+"\n";
         for (RequestFilter requestFilter : rf) {
             s += toString(requestFilter)+"\n";
         }
