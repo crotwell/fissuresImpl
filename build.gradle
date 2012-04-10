@@ -3,13 +3,13 @@ group = 'edu.sc.seis'
 version = '1.1.16-SNAPSHOT'
 
 dependencies {
-    compile project(':fissuresIDL') { transitive = true }
-    compile project(':seedCodec') { transitive = true }
+    compile project(':fissuresIDL')
+    compile project(':seedCodec')
     testCompile "junit-addons:junit-addons:1.4"
 
 }
 
-binDistFiles = copySpec {
+def binDistFiles = copySpec {
     from('build/output') {
         fileMode=0755
         include('bin/**')
@@ -19,7 +19,7 @@ binDistFiles = copySpec {
     }
 }
 
-distFiles = copySpec {
+def distFiles = copySpec {
     with(binDistFiles)
     from('build/docs') {
         include('javadoc/**')
@@ -60,7 +60,7 @@ task explodeDist(type: Sync, dependsOn: ['javadoc', 'wrapper', 'explodeBin']) {
 
 
 task tarDist(type: Tar, dependsOn: [ 'explodeDist']) {
-    dirName = project.name+'-'+version
+    def dirName = project.name+'-'+version
     compression = Compression.GZIP
     into(dirName) {
         with distFiles
