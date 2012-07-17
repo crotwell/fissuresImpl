@@ -692,7 +692,7 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
             decodeBits();
         }
         double min = Float.MAX_VALUE;
-        if (decomp.getType() == decomp.INTEGER) {
+        if (decomp.getType() == B1000Types.INTEGER) {
             // integer data
             int[] iData = decomp.getAsInt();
             for (int i=startIndex; i<iData.length && i<endIndex; i++) {
@@ -700,21 +700,21 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
                     min = iData[i];
                 }
             }
-        } else if (decomp.getType() == decomp.SHORT) {
+        } else if (decomp.getType() == B1000Types.SHORT) {
             short[] iData = decomp.getAsShort();
             for (int i=startIndex; i<iData.length && i<endIndex; i++) {
                 if (iData[i] < min) {
                     min = iData[i];
                 }
             }
-        } else if (decomp.getType() == decomp.FLOAT) {
+        } else if (decomp.getType() == B1000Types.FLOAT) {
             float[] iData = decomp.getAsFloat();
             for (int i=startIndex; i<iData.length && i<endIndex; i++) {
                 if (iData[i] < min) {
                     min = iData[i];
                 }
             }
-        } else if (decomp.getType() == decomp.DOUBLE) {
+        } else if (decomp.getType() == B1000Types.DOUBLE) {
             double[] iData = decomp.getAsDouble();
             for (int i=startIndex; i<iData.length && i<endIndex; i++) {
                 if (iData[i] < min) {
@@ -757,7 +757,7 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
             decodeBits();
         }
         double max = -1*Float.MAX_VALUE;
-        if (decomp.getType() == decomp.INTEGER) {
+        if (decomp.getType() == B1000Types.INTEGER) {
             // integer data
             int[] iData = decomp.getAsInt();
             for (int i=startIndex; i<iData.length && i<endIndex; i++) {
@@ -765,21 +765,21 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
                     max = iData[i];
                 }
             }
-        } else if (decomp.getType() == decomp.SHORT) {
+        } else if (decomp.getType() == B1000Types.SHORT) {
             short[] iData = decomp.getAsShort();
             for (int i=startIndex; i<iData.length && i<endIndex; i++) {
                 if (iData[i] > max) {
                     max = iData[i];
                 }
             }
-        } else if (decomp.getType() == decomp.FLOAT) {
+        } else if (decomp.getType() == B1000Types.FLOAT) {
             float[] iData = decomp.getAsFloat();
             for (int i=startIndex; i<iData.length && i<endIndex; i++) {
                 if (iData[i] > max) {
                     max = iData[i];
                 }
             }
-        } else if (decomp.getType() == decomp.DOUBLE) {
+        } else if (decomp.getType() == B1000Types.DOUBLE) {
             double[] iData = decomp.getAsDouble();
             for (int i=startIndex; i<iData.length && i<endIndex; i++) {
                 if (iData[i] > max) {
@@ -822,23 +822,23 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
         }
 
         double mean = 0.0;
-        if (decomp.getType() == decomp.INTEGER) {
+        if (decomp.getType() == B1000Types.INTEGER) {
             // integer data
             int[] iData = decomp.getAsInt();
             for (int i=startIndex; i<iData.length && i<endIndex; i++) {
                 mean+= iData[i];
             }
-        } else if (decomp.getType() == decomp.SHORT) {
+        } else if (decomp.getType() == B1000Types.SHORT) {
             short[] iData = decomp.getAsShort();
             for (int i=startIndex; i<iData.length && i<endIndex; i++) {
                 mean += iData[i];
             }
-        } else if (decomp.getType() == decomp.FLOAT) {
+        } else if (decomp.getType() == B1000Types.FLOAT) {
             float[] iData = decomp.getAsFloat();
             for (int i=startIndex; i<iData.length && i<endIndex; i++) {
                 mean += iData[i];
             }
-        } else if (decomp.getType() == decomp.DOUBLE) {
+        } else if (decomp.getType() == B1000Types.DOUBLE) {
             double[] iData = decomp.getAsDouble();
             for (int i=startIndex; i<iData.length && i<endIndex; i++) {
                 mean+= iData[i];
@@ -856,11 +856,11 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
         if (decomp == null) {
             decodeBits();
         }
-        if (decomp.getType() == decomp.SHORT) {
+        if (decomp.getType() == B1000Types.SHORT) {
             return new QuantityImpl(decomp.getAsShort()[index], getUnit());
-        } else if (decomp.getType() == decomp.INTEGER) {
+        } else if (decomp.getType() == B1000Types.INTEGER) {
             return new QuantityImpl(decomp.getAsInt()[index], getUnit());
-        } else if (decomp.getType() == decomp.FLOAT) {
+        } else if (decomp.getType() == B1000Types.FLOAT) {
             return new QuantityImpl(decomp.getAsFloat()[index], getUnit());
         } else {
             return new QuantityImpl(decomp.getAsDouble()[index], getUnit());
@@ -956,7 +956,7 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
             // must have the same compression format - fix later
             try {
                 EncodedData[] ebb = data.encoded_values();
-                if ( codec.getDecompressedType(ebb[0].compression) == codec.INTEGER || codec.getDecompressedType(ebb[0].compression) == codec.SHORT ) {
+                if ( codec.getDecompressedType(ebb[0].compression) == B1000Types.INTEGER || codec.getDecompressedType(ebb[0].compression) == B1000Types.SHORT ) {
                     return true;
                 } else {
                     return false;
@@ -989,9 +989,9 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
             try {
                 // this is wrong as not all encodeddata objects in the array
                 // must have the same compression format - fix later
-                if ( codec.getDecompressedType(ebb[0].compression) == codec.INTEGER
-                    || codec.getDecompressedType(ebb[0].compression) == codec.SHORT
-                    || codec.getDecompressedType(ebb[0].compression) == codec.FLOAT) {
+                if ( codec.getDecompressedType(ebb[0].compression) == B1000Types.INTEGER
+                    || codec.getDecompressedType(ebb[0].compression) == B1000Types.SHORT
+                    || codec.getDecompressedType(ebb[0].compression) == B1000Types.FLOAT) {
                     return true;
                 } else {
                     return false;
@@ -1030,7 +1030,7 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
                 EncodedData[] ebb = data.encoded_values();
                 // this is wrong as not all encodeddata objects in the array
                 // must have the same compression format - fix later
-                if ( codec.getDecompressedType(ebb[0].compression) == codec.SHORT ) {
+                if ( codec.getDecompressedType(ebb[0].compression) == B1000Types.SHORT ) {
                     return true;
                 } else {
                     return false;
@@ -1503,9 +1503,8 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
                     break;
 
                 default:
-                    System.err.println("decompressed primitive type "+type+
+                    throw new CodecException("decompressed primitive type "+type+
                                            " is not known");
-                    break;
             } // end of switch ()
         }
     }
