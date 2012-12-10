@@ -62,7 +62,7 @@ public class ISOTime {
         DecimalFormat xxFormat = new DecimalFormat("00");
         DecimalFormat xxxFormat = new DecimalFormat("000");
         DecimalFormat floatFormat = new DecimalFormat("00.000#");
-        return xxxFormat.format(year) + xxxFormat.format(jday) + "T"
+        return xxxFormat.format(year) + xxxFormat.format(jday) + "J"
                 + xxFormat.format(hour) + xxFormat.format(minute)
                 + floatFormat.format(second) + "Z";
     }
