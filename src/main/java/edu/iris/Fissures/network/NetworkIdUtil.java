@@ -89,6 +89,10 @@ public class NetworkIdUtil {
         return id.begin_time.date_time.substring(2, 4);
     }
 
+    public static String getYear(NetworkId id) {
+        return id.begin_time.date_time.substring(0, 4);
+    }
+
     public static int hashCode(NetworkId id) {
         return 57 + toString(id).hashCode();
     }
