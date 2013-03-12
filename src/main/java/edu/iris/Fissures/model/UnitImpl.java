@@ -719,6 +719,8 @@ public class UnitImpl extends edu.iris.Fissures.Unit {
     public static final UnitImpl NEWTON =
         UnitImpl.multiply(KILOGRAM, METER_PER_SECOND_PER_SECOND, "NEWTON");
     public static final UnitImpl PASCAL = UnitImpl.divide(NEWTON,SQUARE_METER,"PASCAL");
+    public static final UnitImpl BAR = UnitImpl.multiply(100000, PASCAL, "BAR");
+    public static final UnitImpl MILLIBAR = UnitImpl.multiply(.001, BAR, "MILLIBAR");
     
     /* strain */
     public static final UnitImpl CUBIC_METER_PER_CUBIC_METER = UnitImpl.divide(CUBIC_METER, CUBIC_METER);
