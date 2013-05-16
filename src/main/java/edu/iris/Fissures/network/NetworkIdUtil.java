@@ -35,7 +35,7 @@ public class NetworkIdUtil {
             return false;
         }
         // only compare dates if temp network, ie network code starts with X, Y,
-        // Z
+        // Z or number
         return !isTemporary(a)
                 || TimeUtils.areEqual(a.begin_time, b.begin_time);
     }
