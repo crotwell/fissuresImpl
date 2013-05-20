@@ -719,6 +719,8 @@ public class UnitImpl extends edu.iris.Fissures.Unit {
     public static final UnitImpl NEWTON =
         UnitImpl.multiply(KILOGRAM, METER_PER_SECOND_PER_SECOND, "NEWTON");
     public static final UnitImpl PASCAL = UnitImpl.divide(NEWTON,SQUARE_METER,"PASCAL");
+    public static final UnitImpl HECTOPASCAL = UnitImpl.multiply(100, PASCAL, "HECTOPASSCAL");
+    public static final UnitImpl KILOPASCAL = UnitImpl.multiply(1000, PASCAL, "KILOPASSCAL");
     public static final UnitImpl BAR = UnitImpl.multiply(100000, PASCAL, "BAR");
     public static final UnitImpl MILLIBAR = UnitImpl.multiply(.001, BAR, "MILLIBAR");
     
@@ -735,9 +737,11 @@ public class UnitImpl extends edu.iris.Fissures.Unit {
     public static final UnitImpl AMPERE = new UnitImpl(UnitBase.AMPERE, 1, NONE);
     public static final UnitImpl COULOMB = UnitImpl.multiply(AMPERE, SECOND, "COULOMB");
     public static final UnitImpl VOLT = UnitImpl.divide(JOULE, COULOMB, "VOLT");
+    public static final UnitImpl WATT = UnitImpl.divide(JOULE, SECOND, "WATT");
     public static final UnitImpl WEBER = UnitImpl.multiply(VOLT, SECOND, "WEBER");
     public static final UnitImpl TESLA = UnitImpl.divide(WEBER, SQUARE_METER, "TESLA");
     public static final UnitImpl VOLT_PER_METER = UnitImpl.divide(VOLT, METER);
+    public static final UnitImpl WATT_PER_SQUARE_METER = UnitImpl.divide(WATT, SQUARE_METER);
 
     /* common angular units. */
     public static final UnitImpl RADIAN = UnitImpl.divide(LENGTH, LENGTH, "RADIAN");
