@@ -12,7 +12,7 @@ import edu.iris.Fissures.IfEvent.Magnitude;
 public class MagnitudeUtil {
 
     public static String toString(Magnitude m) {
-        return numberFormat.format(m.value) + " " + m.type;
+        return new DecimalFormat("0.0").format(m.value) + " " + m.type;
     }
 
     public static boolean areEqual(Magnitude a, Magnitude b) {
@@ -55,5 +55,4 @@ public class MagnitudeUtil {
         return result;
     }
 
-    static DecimalFormat numberFormat = new DecimalFormat("0.0");
 }
