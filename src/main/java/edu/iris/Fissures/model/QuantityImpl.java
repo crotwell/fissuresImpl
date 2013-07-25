@@ -39,14 +39,7 @@ public class QuantityImpl extends Quantity {
                                 UnitImpl.createUnitImpl(q.the_units));
     }
     
-    /** Sets the format using a java DecimalFormat.
-     * @see http://java.sun.com/j2se/1.5.0/docs/api/java/text/DecimalFormat.html
-     * @param format
-     */
-    public void setDecimalFormat(String format) {
-        this.format = new DecimalFormat(format);
-    }
-    
+    @Deprecated
     public void setFormat(NumberFormat format) {
         this.format = format;
     }
