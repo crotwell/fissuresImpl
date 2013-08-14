@@ -46,7 +46,7 @@ public class ISOTime {
                 // no patterns worked
                 throw new UnsupportedFormat(s);
             }
-            date = new MicroSecondDate(d);
+            date = new MicroSecondDate(d.getTime() * 1000 + Integer.parseInt(getMicroseconds()));
         } // end of else
     }
 
@@ -124,11 +124,18 @@ public class ISOTime {
         if(s.lastIndexOf('.') == -1) {
             // no decimal seconds
             endIndex = zoneIndex;
+            microSeconds = "0";
         } else if(zoneIndex - s.lastIndexOf('.') > 3) {
             endIndex = s.lastIndexOf('.') + 4;
+            microSeconds = s.substring(s.lastIndexOf('.')+4, zoneIndex);
         } else {
             endIndex = zoneIndex;
+            microSeconds = "0";
         }
+        while(microSeconds.length() < 3) {
+            microSeconds += "0";
+        }
+        
         String out = s.substring(0, endIndex);
         // System.out.println("ISOTime out="+out+" z-.="+(zoneIndex -
         // s.lastIndexOf('.')));
@@ -166,12 +173,18 @@ public class ISOTime {
         return out;
     }
 
+    String microSeconds;
+    
     protected MicroSecondDate date;
 
     protected String orig;
 
     public String getOrigString() {
         return orig;
+    }
+    
+    public String getMicroseconds() {
+        return microSeconds;
     }
 
     /**
@@ -200,15 +213,15 @@ public class ISOTime {
             s += "00" + micros;
         } else if(micros < 100) {
             if(micros % 10 == 0) {
-                s += "0" + (micros % 10);
+                s += "0" + (micros / 10);
             } else {
                 s += "0" + micros;
             }
         } else {
             if(micros % 100 == 0) {
-                s += micros % 100;
+                s += micros / 100;
             } else if(micros % 10 == 0) {
-                s += micros % 10;
+                s += micros / 10;
             } else {
                 s += micros;
             }
