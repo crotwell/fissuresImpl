@@ -6,13 +6,15 @@
 package edu.iris.Fissures.event;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 import edu.iris.Fissures.IfEvent.Magnitude;
 
 public class MagnitudeUtil {
 
     public static String toString(Magnitude m) {
-        return new DecimalFormat("0.0").format(m.value) + " " + m.type;
+        return new DecimalFormat("0.0", new DecimalFormatSymbols(Locale.US)).format(m.value) + " " + m.type;
     }
 
     public static boolean areEqual(Magnitude a, Magnitude b) {

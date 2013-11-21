@@ -1,8 +1,10 @@
 package edu.iris.Fissures.network;
 
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.TimeZone;
 
 import edu.iris.Fissures.TimeRange;
@@ -154,8 +156,8 @@ public class ResponsePrint {
         else if(stage.type == edu.iris.Fissures.IfNetwork.TransferType.DIGITAL)
             transferType = "D";
         PoleZeroFilter pz = filter.pole_zero_filter();
-        java.text.DecimalFormat f = new java.text.DecimalFormat("+0.00000E00;-0.00000E00");
-        java.text.DecimalFormat ind = new java.text.DecimalFormat(" 0");
+        java.text.DecimalFormat f = new java.text.DecimalFormat("+0.00000E00;-0.00000E00", new DecimalFormatSymbols(Locale.US));
+        java.text.DecimalFormat ind = new java.text.DecimalFormat(" 0", new DecimalFormatSymbols(Locale.US));
         StringBuffer s = new StringBuffer("\n#");
         s.append("\n#                   +-----------------------------------+");
         s.append("\n#                   |     Response (Poles and Zeros)    |\n");
@@ -269,7 +271,7 @@ public class ResponsePrint {
         s.append("\nB054F10     Number of denominators:            "
                 + c.denominator.length);
         s.append("\n#");
-        java.text.DecimalFormat f = new java.text.DecimalFormat("+0.00000E00;-0.00000E00");
+        java.text.DecimalFormat f = new java.text.DecimalFormat("+0.00000E00;-0.00000E00", new DecimalFormatSymbols(Locale.US));
         if(c.numerator.length > 0) {
             s.append("\n#              Numerator coefficients:");
             s.append("\n#               i  coefficient   error");
@@ -335,8 +337,8 @@ public class ResponsePrint {
         s.append("\nB055F06     Number of responses listed:        "
                 + c.frequency.length);
         s.append("\n#");
-        java.text.DecimalFormat f = new java.text.DecimalFormat("+0.00000E00;-0.00000E00");
-        java.text.DecimalFormat ind = new java.text.DecimalFormat(" 0");
+        java.text.DecimalFormat f = new java.text.DecimalFormat("+0.00000E00;-0.00000E00", new DecimalFormatSymbols(Locale.US));
+        java.text.DecimalFormat ind = new java.text.DecimalFormat(" 0", new DecimalFormatSymbols(Locale.US));
         if(c.frequency.length > 0) {
             s.append("\n#              i  frequency     amplitude     amplitude err phase angle   phase err");
             for(int k = 0; k < c.frequency.length; k++) {
@@ -374,7 +376,7 @@ public class ResponsePrint {
                                   Stage stage) {
         if(stage.the_decimation.length == 0)
             return "";
-        java.text.DecimalFormat f = new java.text.DecimalFormat("+0.0000E00;-0.0000E00");
+        java.text.DecimalFormat f = new java.text.DecimalFormat("+0.0000E00;-0.0000E00", new DecimalFormatSymbols(Locale.US));
         StringBuffer s = new StringBuffer("#\n");
         s.append("#                   +-----------------------------------+\n");
         s.append("#                   |             Decimation            |\n");
@@ -410,7 +412,7 @@ public class ResponsePrint {
                                   TimeRange effective_time,
                                   int stageNum,
                                   Stage stage) {
-        java.text.DecimalFormat f = new java.text.DecimalFormat("+0.00000E00;-0.00000E00");
+        java.text.DecimalFormat f = new java.text.DecimalFormat("+0.00000E00;-0.00000E00", new DecimalFormatSymbols(Locale.US));
         StringBuffer s = new StringBuffer("#\n");
         s.append("#                   +-----------------------------------+\n");
         s.append("#                   |      Channel Sensitivity/Gain     |\n");
