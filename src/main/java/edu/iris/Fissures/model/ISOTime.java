@@ -2,10 +2,12 @@ package edu.iris.Fissures.model;
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.TimeZone;
 
 /**
@@ -59,9 +61,10 @@ public class ISOTime {
                                       int hour,
                                       int minute,
                                       float second) {
-        DecimalFormat xxFormat = new DecimalFormat("00");
-        DecimalFormat xxxFormat = new DecimalFormat("000");
-        DecimalFormat floatFormat = new DecimalFormat("00.000#");
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
+        DecimalFormat xxFormat = new DecimalFormat("00", symbols);
+        DecimalFormat xxxFormat = new DecimalFormat("000", symbols);
+        DecimalFormat floatFormat = new DecimalFormat("00.000#", symbols);
         return xxxFormat.format(year) + xxxFormat.format(jday) + "J"
                 + xxFormat.format(hour) + xxFormat.format(minute)
                 + floatFormat.format(second) + "Z";
