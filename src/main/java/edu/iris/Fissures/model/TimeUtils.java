@@ -34,7 +34,6 @@ public class TimeUtils {
         (new ISOTime("2499002J00:00:00.000Z")).getDate();
 
     public static final edu.iris.Fissures.Time timeUnknown = 
-        new edu.iris.Fissures.Time(edu.iris.Fissures.TIME_UNKNOWN.value, 
-				   -1);
+        new edu.iris.Fissures.Time(edu.iris.Fissures.TIME_UNKNOWN.value);
 
 }// TimeUtils

@@ -67,8 +67,7 @@ public class LocalSeismogramImplTest
 
 
         edu.iris.Fissures.Time time =
-        new edu.iris.Fissures.Time("19991231T235959.000Z",
-                       -1);
+        new edu.iris.Fissures.Time("19991231T235959.000Z");
         String id = "Nowhere: "+name;
     TimeInterval timeInterval = new TimeInterval(1, UnitImpl.SECOND);
         SamplingImpl sampling =
