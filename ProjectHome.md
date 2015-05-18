@@ -1,0 +1,1 @@
+FissuresImpl provides java classes directly needed to support clients and servers using the Fissures/DHI system. If you are using Fissures/DHI and coding in Java, then you almost certainly need fissuresImpl. You may also be interested in fissuresUtil, a collection of utility code built on top of fissuresImpl.
