@@ -31,7 +31,7 @@ public class ISOTime {
         orig = s;
         // check for TIME_UNKNOWN and default DMC 2599 values
         if(s.equals(edu.iris.Fissures.TIME_UNKNOWN.value)
-                || s.equals("25991231235959.0000GMT")) {
+                || s.equals("2599-12-31T23:59:59.0000GMT")) {
             date = TimeUtils.future;
         } else {
             String clean = cleanDate(s);
@@ -72,10 +72,10 @@ public class ISOTime {
 
     private static final DateFormat[] dateFormats;
 
-    public static final String[] patterns = {"yyyyDDD'J'HHmmss.SSSz",
+    public static final String[] patterns = {"yyyy-MM-dd'T'HH:mm:ss.SSSz",
+                                             "yyyyDDD'J'HHmmss.SSSz",
                                              "yyyyMMddHHmmss.SSSz",
                                              "yyyyMMdd'T'HH:mm:ss.SSSz",
-                                             "yyyy-MM-dd'T'HH:mm:ss.SSSz",
                                              "yyyyDDD'J'HH:mm:ss.SSSz",
                                              "yyyyMMdd'T'HHmmss.SSSz",
                                              "yyyy-MM-dd'T'HHmmss.SSSz",
@@ -206,7 +206,7 @@ public class ISOTime {
     }
 
     public static String getISOString(MicroSecondDate ms) {
-        SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd'T'HH:mm:ss.SSS");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
         df.setTimeZone(TimeZone.getTimeZone("GMT"));
         String s = df.format(ms);
         long micros = ms.getMicroSeconds();
@@ -234,7 +234,7 @@ public class ISOTime {
 
     public static String getISOString(Date ms) {
         if(ms instanceof MicroSecondDate) { return getISOString((MicroSecondDate)ms); }
-        SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd'T'HH:mm:ss.SSSz");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSz");
         df.setTimeZone(TimeZone.getTimeZone("GMT"));
         return df.format(ms);
     }
