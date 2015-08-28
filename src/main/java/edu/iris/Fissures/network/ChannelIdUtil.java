@@ -92,6 +92,54 @@ public class ChannelIdUtil {
         return ""+id.channel_code.charAt(2);
     }
 
+    public static float minSPSForBandCode(String bandCode) {
+        return minSPSForBandCode(bandCode.charAt(0));
+    }
+    
+    public static float minSPSForBandCode(char bandCode) {
+        float minSps = 0;
+        switch (bandCode) {
+            case 'F': 
+            case 'G': 
+                minSps = 1000;
+                break;
+            case 'D': 
+            case 'C': 
+                minSps = 250;
+                break;
+            case 'E': 
+                minSps = 80;
+                break;
+            case 'S': 
+                minSps = 10;
+                break;
+            case 'H': 
+                minSps = 80;
+                break;
+            case 'B': 
+                minSps = 10;
+                break;
+            case 'M': 
+                minSps = 1;
+                break;
+            case 'L': 
+                minSps = 1;
+                break;
+            case 'V': 
+                minSps = 0.1f;
+                break;
+            case 'U': 
+                minSps = 0.01f;
+                break;
+            case 'R': 
+                minSps = 0.001f;
+                break;
+            default: 
+                minSps = 1;
+        }
+        return minSps;
+    }
+
     public static int hashCode(ChannelId id) {
         return 12 + toString(id).hashCode();
     }
