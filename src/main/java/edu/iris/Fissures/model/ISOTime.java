@@ -69,6 +69,8 @@ public class ISOTime {
                 + xxFormat.format(hour) + xxFormat.format(minute)
                 + floatFormat.format(second) + "Z";
     }
+    
+    public static final TimeZone UTC = TimeZone.getTimeZone("UTC");
 
     private static final DateFormat[] dateFormats;
 
@@ -98,11 +100,10 @@ public class ISOTime {
     static int[] matches = new int[patterns.length];
     static {
         dateFormats = new DateFormat[patterns.length];
-        TimeZone gmt = TimeZone.getTimeZone("GMT");
         for(int i = 0; i < patterns.length; i++) {
             dateFormats[i] = new SimpleDateFormat(patterns[i]);
             dateFormats[i].setLenient(false);
-            dateFormats[i].setTimeZone(gmt);
+            dateFormats[i].setTimeZone(UTC);
         }
     }
 
@@ -196,7 +197,7 @@ public class ISOTime {
      * supports millisecond precision.
      */
     public Calendar getCalendar() {
-        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+        Calendar cal = Calendar.getInstance(UTC);
         cal.setTime(date);
         return cal;
     }
@@ -207,7 +208,7 @@ public class ISOTime {
 
     public static String getISOString(MicroSecondDate ms) {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
-        df.setTimeZone(TimeZone.getTimeZone("GMT"));
+        df.setTimeZone(UTC);
         String s = df.format(ms);
         long micros = ms.getMicroSeconds();
         if(micros == 0) {
@@ -235,14 +236,14 @@ public class ISOTime {
     public static String getISOString(Date ms) {
         if(ms instanceof MicroSecondDate) { return getISOString((MicroSecondDate)ms); }
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSz");
-        df.setTimeZone(TimeZone.getTimeZone("GMT"));
+        df.setTimeZone(UTC);
         return df.format(ms);
     }
 
     public String toString() {
         java.text.DateFormat df = java.text.DateFormat.getDateTimeInstance(java.text.DateFormat.FULL,
                                                                            java.text.DateFormat.FULL);
-        df.setTimeZone(TimeZone.getTimeZone("GMT"));
+        df.setTimeZone(UTC);
         return df.format(getCalendar().getTime());
         //  return getYear()+" "+getMonth()+" "+getDay()+" "+getHour()+" "+
         //    getMinute()+" "+getSecond();
