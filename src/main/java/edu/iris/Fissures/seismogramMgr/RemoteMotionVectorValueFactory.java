@@ -6,8 +6,7 @@ package edu.iris.Fissures.seismogramMgr;
  *
  * Created: Thu Dec  6 22:15:02 2001
  *
- * @author <a href="mailto:">Philip Crotwell</a>
- * @version
+ * @author Philip Crotwell
  */
 
 public class RemoteMotionVectorValueFactory implements org.omg.CORBA.portable.ValueFactory {

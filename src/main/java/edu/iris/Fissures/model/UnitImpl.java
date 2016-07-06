@@ -9,18 +9,18 @@ import edu.iris.Fissures.UnitBase;
 
 
 /** encapsulates the meaning of a unit. All units are products of SI
- *  primitive units.<P>
- *  It has 4 main parts and can be viewed as<BREAK>
- *  (m * 10^p u) ^ e<BREAK>
- *  where:<BREAK>
- *  m is the multiplicative factor,<BREAK>
+ *  primitive units.<p>
+ *  It has 4 main parts and can be viewed as<br>
+ *  (m * 10^p u) ^ e<br>
+ *  where:<br>
+ *  m is the multiplicative factor,<br>
  *  p is the power of ten,
  *  u is either a SI base unit, or a composite unit,
  *  e is the exponent.<P>
- *  For example, the unit <EM>per inch<EM> might be represented as<break>
- *  (2.54 * 10^0 (1.0 * 10^-2 METER) ) ^ -1<BREAK>
+ *  For example, the unit <em>per inch</em> might be represented as<br>
+ *  (2.54 * 10^0 (1.0 * 10^-2 METER) ) ^ -1<br>
  *  as one inch is 2.54 centimeters, which is 10-2 METERS.
- *  The -1 takes care of the <em>per<em> part.
+ *  The -1 takes care of the <em>per</em> part.
  *
  */
 public class UnitImpl extends edu.iris.Fissures.Unit {
@@ -28,13 +28,13 @@ public class UnitImpl extends edu.iris.Fissures.Unit {
     /** The CORBA struct that contains the unit data. It is composed of
      <p>
      the_unit_base - the base unit, if this is of type BASE, or COMPOSITE if not
-     <BREAK>
+     <br>
      elements - the elements that make up this composite unit,
-     if this is of type COMPOSITE<BREAK>
-     power - the power of ten for this unit, for example 3 for KILO<BREAK>
-     name - a string name for the unit, for example millisecond or foot<BREAK>
+     if this is of type COMPOSITE<br>
+     power - the power of ten for this unit, for example 3 for KILO<br>
+     name - a string name for the unit, for example millisecond or foot<br>
      multi_factor - multiplicative factor, for example 2.54 together
-     with centimeters would give inches<BREAK>
+     with centimeters would give inches<br>
      exponent - the exponent of the unit, for example -1 for per second
      */
     protected static int numPrimitives = UnitImpl.getNumPrimitives();
@@ -120,14 +120,14 @@ public class UnitImpl extends edu.iris.Fissures.Unit {
     /** Returns the number of subunits. For example meters per second would
      *  have 2 subunits and meters per second per second could have either
      *  2 or 3 depending on how it was constructed. A base unit has 0 subunits.
-     *  @returns the number of subunits. */
+     *  @return the number of subunits. */
     public int getNumSubUnits() {
         if (the_unit_base.equals(UnitBase.COMPOSITE)) return elements.length;
         else return 0;
     }
 
     /** Returns the ith subunit of this Unit.
-     *  @returns the ith subunit. */
+     *  @return the ith subunit. */
     public UnitImpl getSubUnit(int i) { return (UnitImpl)elements[i]; }
 
     public UnitImpl[] getSubUnits() {
@@ -457,7 +457,7 @@ public class UnitImpl extends edu.iris.Fissures.Unit {
     }
 
     /** creates and inverse to this unit with a given name.
-     * @returns a new unit that is the inverse (^-1) of this unit.
+     * @return a new unit that is the inverse (^-1) of this unit.
      */
     public UnitImpl inverse() {
         if (name == null ||
@@ -468,7 +468,7 @@ public class UnitImpl extends edu.iris.Fissures.Unit {
         }
     }
 
-    /** @returns a new unit that is the inverse (^-1) of this unit.
+    /** @return a new unit that is the inverse (^-1) of this unit.
      */
     public UnitImpl inverse(String name) {
         if (the_unit_base != UnitBase.COMPOSITE) {
@@ -556,7 +556,7 @@ public class UnitImpl extends edu.iris.Fissures.Unit {
     }
 
     /* the powers of common prefixes.
-     *  @returns the string prefix for common powers of ten, or null if
+     *  @return the string prefix for common powers of ten, or null if
      *  there is no prefix.
      */
     public static final String getPrefix(int power) {

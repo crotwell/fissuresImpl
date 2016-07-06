@@ -657,19 +657,19 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
         setData(d);
     }
 
-    /** @returns the number of data points within the seismogram.
+    /** @return the number of data points within the seismogram.
      */
     public int getNumPoints() {
         return num_points;
     }
 
-    /** @returns the minimum value of a data point.
+    /** @return the minimum value of a data point.
      */
     public QuantityImpl getMinValue() throws CodecException {
         return getMinValue(0, getNumPoints());
     }
 
-    /** @returns the minimum value of a data point starting at startIndex
+    /** @return the minimum value of a data point starting at startIndex
      *  and stopping at endIndex-1. */
     public QuantityImpl getMinValue(int startIndex,
                                     int endIndex)
@@ -726,13 +726,13 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
                                 getUnit());
     }
 
-    /** @returns the maximum value of a data point.
+    /** @return the maximum value of a data point.
      */
     public QuantityImpl getMaxValue() throws CodecException {
         return getMaxValue(0, getNumPoints());
     }
 
-    /** @returns the maximum vlue of a data point starting at startIndex
+    /** @return the maximum vlue of a data point starting at startIndex
      and stopping at endIndex-1;
      */
     public QuantityImpl getMaxValue(int startIndex,
@@ -790,13 +790,13 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
         return new QuantityImpl(max,
                                 getUnit());
     }
-    /** @returns the mean value of the data points.
+    /** @return the mean value of the data points.
      */
     public QuantityImpl getMeanValue() throws CodecException {
         return getMeanValue(0, getNumPoints());
     }
 
-    /** @returns the mean value of the data points starting at startIndex
+    /** @return the mean value of the data points starting at startIndex
      and stopping at endIndex-1;
      */
     public QuantityImpl getMeanValue(int startIndex,
@@ -849,7 +849,7 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
                                 getUnit());
     }
 
-    /** @returns the value of the index data point.
+    /** @return the value of the index data point.
      */
     public QuantityImpl getValueAt(int index)
         throws CodecException {
@@ -867,7 +867,7 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
         }
     }
 
-    /** @returns the amplitude range, min to max, from startIndex to
+    /** @return the amplitude range, min to max, from startIndex to
      endIndex-1
      */
     public UnitRangeImpl getAmplitudeRange(int beginIndex, int endIndex) throws CodecException {
@@ -878,7 +878,7 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
                                  min.getUnit());
     }
 
-    /** @returns the amplitude range for the whole seismogram.
+    /** @return the amplitude range for the whole seismogram.
      */
     public UnitRangeImpl getAmplitudeRange() throws CodecException {
         QuantityImpl min = getMinValue();
@@ -888,7 +888,7 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
                                  min.getUnit());
     }
 
-    /** @returns true if the data is plain integers.
+    /** @return true if the data is plain integers.
      */
     public boolean is_long() {
         TimeSeriesType discrim = data.discriminator();
@@ -898,7 +898,7 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
         return false;
     }
 
-    /** @returns true if the data is plain floats.
+    /** @return true if the data is plain floats.
      */
     public boolean is_float() {
         TimeSeriesType discrim = data.discriminator();
@@ -908,7 +908,7 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
         return false;
     }
 
-    /** @returns true if the data is plain doubles.
+    /** @return true if the data is plain doubles.
      */
     public boolean is_double() {
         TimeSeriesType discrim = data.discriminator();
@@ -918,7 +918,7 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
         return false;
     }
 
-    /** @returns true if the data is plain shorts.
+    /** @return true if the data is plain shorts.
      */
     public boolean is_short() {
         TimeSeriesType discrim = data.discriminator();
@@ -928,7 +928,7 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
         return false;
     }
 
-    /** @returns true if the data is encoded.
+    /** @return true if the data is encoded.
      */
     public boolean is_encoded() {
         TimeSeriesType discrim = data.discriminator();
@@ -973,7 +973,7 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
         }
     }
 
-    /** @returns true if the data is float, or encoded as floats.
+    /** @return true if the data is float, or encoded as floats.
      */
     public boolean can_convert_to_float() {
         TimeSeriesType discrim = data.discriminator();
@@ -1047,7 +1047,7 @@ public class LocalSeismogramImpl extends SeismogramAttrImpl {
         }
     }
 
-    /** @returns the SeismogramDataImpl data.
+    /** @return the SeismogramDataImpl data.
      */
     public TimeSeriesDataSel getData() {
         return data;

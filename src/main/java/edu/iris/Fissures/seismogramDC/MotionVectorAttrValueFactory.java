@@ -7,8 +7,7 @@ package edu.iris.Fissures.seismogramDC;
  *
  * Created: Thu Dec  6 21:58:10 2001
  *
- * @author <a href="mailto:">Philip Crotwell</a>
- * @version
+ * @author Philip Crotwell
  */
 
 public class MotionVectorAttrValueFactory  implements org.omg.CORBA.portable.ValueFactory {

@@ -41,7 +41,7 @@ public class UnitRangeImpl extends edu.iris.Fissures.UnitRange {
     public UnitImpl getUnit() { return (UnitImpl)the_units; }
 
     /** converts this UnitRange into the given units.
-     *  @returns a new quantity with the given units and its value
+     *  @return a new quantity with the given units and its value
      *     correspondingly adjusted.
      *  @throws IllegalArgumentException if the given units are
      *     not compatible.

@@ -112,13 +112,13 @@ public class SeismogramAttrImpl extends LocalSeismogram {
     setParameterRefs(parm_ids);
     }
 
-    /** @returns the id of this seismogram. Should be unique.
+    /** @return the id of this seismogram. Should be unique.
      */
     public String get_id() {
         return id;
     }
 
-    /** @returns the number of data points within the seismogram.
+    /** @return the number of data points within the seismogram.
      */
     public int getNumPoints() {
         return num_points;
@@ -171,7 +171,7 @@ public class SeismogramAttrImpl extends LocalSeismogram {
     /**
        Gets the time of the first sample.
 
-       @returns the time of the first sample as a MicroSecondDate.
+       @return the time of the first sample as a MicroSecondDate.
 
        @throws UnsupportedFormat if the time string is not recognized.
     */
@@ -184,7 +184,7 @@ public class SeismogramAttrImpl extends LocalSeismogram {
     return beginTime;
     }
 
-    /**@returns the amount of time that this seismogram covers.
+    /**@return the amount of time that this seismogram covers.
      */
     public TimeInterval getTimeInterval() {
     QuantityImpl q = getSampling().getPeriod();
@@ -196,14 +196,14 @@ public class SeismogramAttrImpl extends LocalSeismogram {
 
 
     /**
-       @returns the time of the last sample of this seismogram.
+       @return the time of the last sample of this seismogram.
     */
     public MicroSecondDate getEndTime() {
     return getBeginTime().add(getTimeInterval());
     }
 
     /**
-    @returns the name given to this seismogram.
+    @return the name given to this seismogram.
     */
     public String getName() {
         if (properties == null) return get_id();
@@ -239,20 +239,20 @@ public class SeismogramAttrImpl extends LocalSeismogram {
         properties[nameNum] = new Property("Name", name);
     }
 
-    /** @returns the units of amplitude of the timeseries.
+    /** @return the units of amplitude of the timeseries.
      */
     public UnitImpl getUnit() {
         //cast to edu.iris.Fissures.model.Unit
     return (UnitImpl)y_unit;
     }
 
-    /** @returns the id of the channel that the seismogram was recorded from.
+    /** @return the id of the channel that the seismogram was recorded from.
      */
     public ChannelId getChannelID() {
     return channel_id;
     }
 
-    /** @returns the samapling information for the seismogram. Note that this
+    /** @return the samapling information for the seismogram. Note that this
     may be different from the nominal sampling rate of the channel if a
     sampling ajusting time correction has been applied.
     */

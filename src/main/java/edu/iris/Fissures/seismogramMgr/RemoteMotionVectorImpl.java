@@ -18,7 +18,7 @@ import edu.iris.Fissures.model.TimeInterval;
  *
  * Created: Thu Dec  6 22:17:09 2001
  *
- * @author <a href="mailto:">Philip Crotwell</a>
+ * @author Philip Crotwell
  * @version
  */
 

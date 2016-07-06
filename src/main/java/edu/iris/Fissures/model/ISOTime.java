@@ -14,16 +14,15 @@ import java.util.TimeZone;
  * ISOTime.java Created: Fri Jul 9 13:45:39 1999
  * 
  * @author Philip Crotwell
- * @version
  */
 public class ISOTime {
 
     /**
      * parses a ISO8601 string into its component parts. Currently we only
-     * support the 4 month based, full formats, <break>
-     * yyyy-mm-ddThh:mm:ss.ddddZTD <BREAK>yyyy-mm-ddThhmmss.ddddZTD <BREAK>
-     * yyyymmddThh:mm:ss.ddddZTD <BREAK>yyyymmddThhmmss.ddddZTD, <BREAK>plus the
-     * similar julian day formats, <BREAK>yyyyjjjThh:mm:ss.ddddZTD and
+     * support the 4 month based, full formats, <br>
+     * yyyy-mm-ddThh:mm:ss.ddddZTD <br>yyyy-mm-ddThhmmss.ddddZTD <br>
+     * yyyymmddThh:mm:ss.ddddZTD <br>yyyymmddThhmmss.ddddZTD, <br>plus the
+     * similar julian day formats, <br>yyyyjjjThh:mm:ss.ddddZTD and
      * yyyyjjjThhmmss.ddddZTD. The time zone part, ZTD, is either Z for zulu, ie
      * UTC, or a offset from UTC in the form of +hh:mm or -hh:mm.
      */

@@ -21,7 +21,7 @@ import edu.iris.Fissures.IfSeismogramDC.LocalSeismogram;
  *
  * Created: Thu Dec  6 17:12:32 2001
  *
- * @author <a href="mailto:">Philip Crotwell</a>
+ * @author Philip Crotwell
  * @version
  */
 

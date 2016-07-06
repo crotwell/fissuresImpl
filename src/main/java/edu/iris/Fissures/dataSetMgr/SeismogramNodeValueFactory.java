@@ -6,7 +6,7 @@ package edu.iris.Fissures.dataSetMgr;
  *
  * Created: Thu Dec  6 20:24:20 2001
  *
- * @author <a href="mailto:">Philip Crotwell</a>
+ * @author Philip Crotwell
  * @version
  */
 

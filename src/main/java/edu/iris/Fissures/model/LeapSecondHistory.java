@@ -5,15 +5,14 @@ package edu.iris.Fissures.model;
  * LeapSecondHistory.java
  * Records leapseconds so that time differences may be converted properly.
  * The data is from 
- * <a href="ftp://maia.usno.navy.mil/ser7/tai-utc.dat">tai-utc.dat</a>.<BREAK>
+ * <a href="ftp://maia.usno.navy.mil/ser7/tai-utc.dat">tai-utc.dat</a>.<br>
  * and more info can be found at
- * <a href="http://maia.usno.navy.mil/>maia.usno.navy.mil</a>
+ * <a href="http://maia.usno.navy.mil">maia.usno.navy.mil</a>
  *
  *
  * Created: Fri Oct  1 12:04:08 1999
  *
  * @author Philip Crotwell
- * @version
  */
 
 public class LeapSecondHistory  {

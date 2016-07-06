@@ -42,7 +42,7 @@ public class SamplingImpl extends Sampling {
 
     /** Gets the sample period. Returns a Quantity object that has
      Units of time, usually seconds.
-     @returns the sample period in units of time
+     @return the sample period in units of time
      */
     public TimeInterval getPeriod() {
         return (TimeInterval)(getTimeInterval().divideBy(numPoints));
@@ -50,7 +50,7 @@ public class SamplingImpl extends Sampling {
 
     /** Gets the sample frequency. Returns a Quantity object that has
      units of 1/time, usually Hz.
-     @returns the sample frequency.
+     @return the sample frequency.
      */
     public QuantityImpl getFrequency() {
         return getTimeInterval().inverse().multiplyBy(numPoints);

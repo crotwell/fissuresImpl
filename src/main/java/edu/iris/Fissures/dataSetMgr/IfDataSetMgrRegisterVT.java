@@ -8,7 +8,7 @@ import edu.iris.Fissures.model.RegisterVT;
  *
  * Created: Thu Dec  6 17:28:54 2001
  *
- * @author <a href="mailto:">Philip Crotwell</a>
+ * @author Philip Crotwell
  * @version
  */
 

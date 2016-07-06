@@ -58,7 +58,7 @@ public class MicroSecondDate extends Date implements Serializable {
     /**
      * fixBadJavaDatabaseTimestampNanos13Vs14Bug
      * 
-     * @returns microseconds from the timestamp
+     * @return microseconds from the timestamp
      */
     static long fixTimestamp(Timestamp ts) {
         long tsFracSeconds = ts.getTime() % 1000;

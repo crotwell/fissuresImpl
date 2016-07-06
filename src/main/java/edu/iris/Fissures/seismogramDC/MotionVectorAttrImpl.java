@@ -17,8 +17,7 @@ import edu.iris.Fissures.model.TimeInterval;
  * The strange extends is to avoid diamond of death while still reusing this
  * class in LocalMotionVector.
  *
- * @author <a href="mailto:">Philip Crotwell</a>
- * @version
+ * @author Philip Crotwell
  */
 
 public class MotionVectorAttrImpl extends LocalMotionVector {

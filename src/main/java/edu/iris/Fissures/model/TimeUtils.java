@@ -8,8 +8,7 @@ import edu.iris.Fissures.Time;
  *
  * Created: Fri May  4 13:46:12 2001
  *
- * @author <a href="mailto: "Philip Crotwell</a>
- * @version
+ * @author Philip Crotwell
  */
 
 public class TimeUtils {

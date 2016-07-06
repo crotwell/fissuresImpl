@@ -10,7 +10,7 @@ import edu.iris.Fissures.IfSeismogramMgr.Seismogram;
  *
  * Created: Thu Dec  6 19:10:19 2001
  *
- * @author <a href="mailto:">Philip Crotwell</a>
+ * @author Philip Crotwell
  * @version
  */
 

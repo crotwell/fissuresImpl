@@ -42,9 +42,9 @@ public class ResponsePrint {
      * can just be called with edu.iris.dmc.Client.printResponse( ChannelId,
      * Instrumentation );
      * 
-     * @param ChannelId
+     * @param chanId
      *            channel id for the response
-     * @param Instrumentation
+     * @param inst
      *            object containing the entire response
      */
     public static String printResponse(ChannelId chanId, Instrumentation inst) {
@@ -92,9 +92,9 @@ public class ResponsePrint {
     /**
      * Used to print a channel ID and the effective times.
      * 
-     * @param ChannelId
+     * @param id
      *            channel id for the response
-     * @param TimeRange
+     * @param effective_time
      *            effective time of the channel
      */
     public static String printHeader(ChannelId id, TimeRange effective_time) {
@@ -129,13 +129,13 @@ public class ResponsePrint {
     /**
      * Prints poles and zeros response blockette 53
      * 
-     * @param ChannelId
+     * @param id
      *            channel id for the response
-     * @param TimeRange
+     * @param effective_time
      *            effective time of the channel
-     * @param int
+     * @param stageNum
      *            the stage number
-     * @param Stage
+     * @param stage
      *            the entire stage object
      */
     public static String printB53(ChannelId id,
@@ -230,13 +230,13 @@ public class ResponsePrint {
     /**
      * Prints Coefficient responses blockette 53
      * 
-     * @param ChannelId
+     * @param id
      *            channel id for the response
-     * @param TimeRange
+     * @param effective_time
      *            effective time of the channel
-     * @param int
+     * @param stageNum
      *            the stage number
-     * @param Stage
+     * @param stage
      *            the entire stage object
      */
     public static String printB54(ChannelId id,
@@ -307,13 +307,13 @@ public class ResponsePrint {
     /**
      * Prints list response SEED blockette 55
      * 
-     * @param ChannelId
+     * @param id
      *            channel id for the response
-     * @param TimeRange
+     * @param effective_time
      *            effective time of the channel
-     * @param int
+     * @param stageNum
      *            the stage number
-     * @param Stage
+     * @param stage
      *            the entire stage object
      */
     public static String printB55(ChannelId id,
@@ -361,13 +361,13 @@ public class ResponsePrint {
     /**
      * Prints deciamation response SEED blockette 57
      * 
-     * @param ChannelId
+     * @param id
      *            channel id for the response
-     * @param TimeRange
+     * @param effective_time
      *            effective time of the channel
-     * @param int
+     * @param stageNum
      *            the stage number
-     * @param Stage
+     * @param stage
      *            the entire stage object
      */
     public static String printB57(ChannelId id,
@@ -399,13 +399,13 @@ public class ResponsePrint {
     /**
      * Prints sensitivity/gain response SEED blockette 58
      * 
-     * @param ChannelId
+     * @param id
      *            channel id for the response
-     * @param TimeRange
+     * @param effective_time
      *            effective time of the channel
-     * @param int
+     * @param stageNum
      *            the stage number
-     * @param Stage
+     * @param stage
      *            the entire stage object
      */
     public static String printB58(ChannelId id,
@@ -429,9 +429,9 @@ public class ResponsePrint {
     /**
      * Prints the overall sensitivity/gain response SEED blockette 58
      * 
-     * @param ChannelId
+     * @param id
      *            channel id for the response
-     * @param Instrumentation
+     * @param inst
      *            the entire instrument response
      */
     public static String printSensitivity(ChannelId id, Instrumentation inst) {

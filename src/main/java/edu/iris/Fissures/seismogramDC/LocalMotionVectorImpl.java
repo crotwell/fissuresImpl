@@ -15,8 +15,7 @@ import edu.iris.Fissures.model.TimeInterval;
  *
  * Created: Thu Dec  6 21:20:33 2001
  *
- * @author <a href="mailto:">Philip Crotwell</a>
- * @version
+ * @author Philip Crotwell
  */
 
 public class LocalMotionVectorImpl extends MotionVectorAttrImpl {

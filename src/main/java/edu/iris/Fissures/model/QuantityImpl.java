@@ -77,7 +77,7 @@ public class QuantityImpl extends Quantity {
     }
 
     /** converts this Quantity into the given units.
-     *  @returns a new quantity with the given units and its value
+     *  @return a new quantity with the given units and its value
      *     correspondingly adjusted.
      *  @throws IllegalArgumentException if the given units are
      *     not compatible.

@@ -8,7 +8,7 @@ import edu.iris.Fissures.GlobalArea;
  *
  * Created: Thu Dec  6 20:15:07 2001
  *
- * @author <a href="mailto:">Philip Crotwell</a>
+ * @author Philip Crotwell
  * @version
  */
 
