@@ -67,6 +67,4 @@ task tarDist(type: Tar, dependsOn: [ 'explodeDist']) {
     }
 }
 
-javadoc.options.links('http://wiki.fissuresidl.googlecode.com/hg/javadoc/')
-
 assemble.dependsOn(tarDist)
