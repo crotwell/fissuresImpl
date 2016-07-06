@@ -1,15 +1,44 @@
 package edu.iris.Fissures.model;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertTrue;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.junit.Test;
 
 public class ISOTimeTest {
 
+    @Test
+    public void testRawParseMicroseconds() throws ParseException {
+        String isoTenth = "2012-10-21T23:59:50.1Z";
+        String isoMilli = "2012-10-21T23:59:50.123Z";
+        String isoMicro = "2012-10-21T23:59:50.123456Z";
+        String isoTenthMilli = "2012-10-21T23:59:50.1234Z";
+        SimpleDateFormat fMilli = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
+        SimpleDateFormat fMicro = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSSX");
+        
+        // this fails with java.text.ParseException: Unparseable date: 
+        //Date dateTenth = fMilli.parse(isoTenth);
+        
+        // this works
+        Date dateMilli = fMilli.parse(isoMilli);
+        
+        // this fails with java.text.ParseException: Unparseable date: 
+        //Date dateMicro = fMilli.parse(isoMicro);
+        
+        // this works
+        Date dateMicroB = fMicro.parse(isoMicro);
+        
+        // this fails with java.text.ParseException: Unparseable date: 
+        //Date dateMilliB = fMicro.parse(isoMilli);
+        
+        // this fails with java.text.ParseException: Unparseable date: 
+        //Date dateTenthMilliB = fMicro.parse(isoTenthMilli);
+    }
     @Test
     public void testISOTimeString() {
         ISOTime iso = new ISOTime("2012102J235959.000Z");
@@ -36,7 +65,7 @@ public class ISOTimeTest {
 
     @Test
     public void testMSDRoundTrip() {
-        String s = "20120301T23:59:59.";
+        String s = "2012-03-01T23:59:59.";
         NumberFormat f = new DecimalFormat("0000");
         for (int i = 0; i < 10000; i++) {
             String micros = f.format(i);
